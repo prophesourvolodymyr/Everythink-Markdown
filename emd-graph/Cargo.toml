@@ -1,0 +1,17 @@
+[package]
+name = "emd-graph"
+version = "0.1.0"
+edition = "2021"
+description = "Everything MarkDown — agent graph executor"
+license = "MIT"
+repository = "https://github.com/everthink-co/emd"
+
+[dependencies]
+emd = { path = "../emd" }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+tokio = { version = "1", features = ["rt-multi-thread", "sync", "time"] }
+
+[dev-dependencies]
+tokio-test = "0.4"

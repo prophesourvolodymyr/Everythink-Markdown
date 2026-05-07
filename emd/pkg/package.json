@@ -1,0 +1,32 @@
+{
+  "name": "@everthink/emd",
+  "type": "module",
+  "description": "Everything MarkDown — typed, semantic Markdown reference implementation",
+  "version": "0.1.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/everthink-co/emd"
+  },
+  "files": [
+    "emd_bg.wasm",
+    "emd.js",
+    "emd.d.ts",
+    "index.js",
+    "index.d.ts",
+    "README.md"
+  ],
+  "main": "index.js",
+  "types": "index.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ],
+  "keywords": [
+    "markdown",
+    "parser",
+    "ast",
+    "semantic",
+    "wasm",
+    "emd"
+  ]
+}
