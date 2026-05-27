@@ -1,0 +1,150 @@
+[meta] Decision Log — Project Everthink
+All architectural and product decisions are recorded here.
+
+## [decision|done] Choose TypeScript for Frontend
+**Date:** 2024-01-15
+**Deciders:** @team-lead, @frontend-arch
+**Status:** Implemented
+→ supersedes: decisions.emd#python-frontend
+**Context:** Need a type-safe frontend language with strong ecosystem.
+
+Options considered:
+1. TypeScript + React
+2. Python + Django templates
+3. Rust + WASM + Yew
+
+**Decision:** TypeScript + React
+**Rationale:** Largest ecosystem, best tooling, team expertise.
+**Tradeoffs:** Bundle size larger than vanilla JS, slower compile than Rust.
+
+## [decision|done] Use PostgreSQL as Primary Database
+**Date:** 2024-01-20
+**Deciders:** @backend-team
+**Status:** Implemented
+→ implements: schema.emd
+**Context:** Need a relational database for structured EMD data.
+
+Options considered:
+1. PostgreSQL
+2. MongoDB
+3. SQLite
+
+**Decision:** PostgreSQL
+**Rationale:** ACID compliance, JSONB for semi-structured data, strong extension ecosystem.
+**Tradeoffs:** Operational complexity vs SQLite, more rigid schema vs MongoDB.
+
+## [decision|in-progress] GraphQL vs REST for API
+**Date:** 2024-02-10
+**Deciders:** @api-team
+**Status:** Under evaluation
+→ blocks: api-spec.emd
+**Context:** Need to choose API paradigm for the EMD API.
+
+Options considered:
+1. REST + OpenAPI
+2. GraphQL
+3. gRPC
+
+**Decision:** PENDING — running benchmarks on query complexity.
+**Testing:** Running load tests for 100 concurrent users with nested queries.
+
+## [decision|pending] Cloud Provider Selection
+**Date:** 2024-03-01
+**Deciders:** @infra-team
+**Status:** Analysis phase
+→ blocks: config.emd#deployment
+**Context:** Choose primary cloud provider for production deployment.
+
+Options considered:
+1. AWS — most mature, largest service catalog
+2. GCP — best Kubernetes, good ML tools
+3. Azure — best enterprise integration
+
+**Decision:** PENDING
+**Key factors:** Cost, existing team expertise, compliance requirements (SOC2).
+
+## [decision|done] Monorepo with Nx
+**Date:** 2024-01-10
+**Deciders:** @dev-tools
+**Status:** Implemented
+→ contains: all-types.emd
+**Context:** Need shared code across packages.
+
+Options considered:
+1. Nx monorepo
+2. Turborepo
+3. Lerna + Yarn workspaces
+
+**Decision:** Nx
+**Rationale:** Best TypeScript support, powerful code generation, dependency graph visualization.
+**Tradeoffs:** Learning curve for Nx config, build caching complexity.
+
+## [decision|done] CodeMirror 6 for Editor
+**Date:** 2024-02-01
+**Deciders:** @frontend-arch
+**Status:** Implemented
+→ implements: spec.emd#editor-core
+**Context:** Need a performant, extensible code editor for EMD.
+
+Options considered:
+1. CodeMirror 6
+2. Monaco Editor
+3. Ace Editor
+4. Build custom editor
+
+**Decision:** CodeMirror 6
+**Rationale:** Smallest bundle (150KB vs Monaco's 2MB), best mobile support, excellent plugin architecture.
+**Tradeoffs:** Less out-of-the-box features, steeper plugin API.
+
+## [decision|done] CSS Variables for Theming
+**Date:** 2024-02-15
+**Deciders:** @design-team
+**Status:** Implemented
+→ extends: config.emd#theme-settings
+**Context:** Need runtime theme switching without CSS-in-JS overhead.
+
+Options considered:
+1. CSS custom properties (variables)
+2. CSS-in-JS (styled-components)
+3. Tailwind class toggling
+
+**Decision:** CSS custom properties
+**Rationale:** Zero runtime cost, works with any framework, easy runtime switching.
+**Tradeoffs:** No type safety for variable names, no IDE autocomplete.
+
+## [decision|pending] Testing Framework Migration
+**Date:** 2024-03-15
+**Deciders:** @qa-team
+**Status:** Under discussion
+→ requires: verify.emd
+**Context:** Current Jest setup is slow. Considering Vitest migration.
+
+Options considered:
+1. Stay on Jest
+2. Migrate to Vitest
+3. Migrate to Node test runner
+
+**Decision:** PENDING
+**Benchmarks needed:** Test suite runtime comparison across all three.
+
+## [decision|cancelled] Server-Side Rendering with Next.js
+**Date:** 2024-04-01
+**Deciders:** @frontend-arch
+**Status:** Cancelled
+→ conflicts: decisions.emd#vite-spa
+**Context:** Evaluated Next.js for SSR.
+
+**Decision:** CANCELLED — EMD is a client-side editor, SSR adds complexity with no benefit.
+**Rationale:** The editor needs full DOM access (CodeMirror), SSR water-falling is counterproductive.
+**Replaced by:** decisions.emd#vite-spa
+
+## [decision|done] Vite for Build Tooling
+**Date:** 2024-04-02
+**Deciders:** @frontend-arch
+**Status:** Implemented
+→ supersedes: decisions.emd#ssr-nextjs
+**Context:** Need fast HMR, ESM-native builds.
+
+**Decision:** Vite
+**Rationale:** Sub-second HMR, ESM-native dev server, excellent plugin ecosystem.
+**Tradeoffs:** Newer than webpack, some plugins less mature.

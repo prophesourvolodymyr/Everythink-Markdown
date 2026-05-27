@@ -1,0 +1,271 @@
+## [example|done] Mermaid Diagram
+```mermaid
+graph TD
+  A[Client] --> B[Load Balancer]
+  B --> C[Web Server]
+  B --> D[Web Server 2]
+  C --> E[Database]
+  D --> E
+```
+
+## [example|done] Draw Diagram
+```draw
+rect 10 10 300 200 "#e5e7eb"
+circle 160 60 40 "#4f46e5"
+rect 60 120 200 60 "#0d9488"
+text 160 150 "System Overview"
+```
+
+## [example|done] Math Block
+```math
+f(x) = \int_{-\infty}^{\infty} \hat{f}(\xi) e^{2\pi i \xi x} \, d\xi
+```
+
+## [example|done] Table
+```table
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| id | UUID | yes | Primary key |
+| email | String | yes | User email |
+| name | String | yes | Display name |
+| role | Enum | yes | User role |
+```
+
+## [example|done] Diff
+```diff
+--- a/src/auth.ts
++++ b/src/auth.ts
+@@ -12,7 +12,7 @@ export function authenticate(token: string): User | null {
+   try {
+-    const payload = jwt.decode(token);
++    const payload = jwt.verify(token, SECRET_KEY);
+     return payload ? payload.user : null;
+   } catch {
+     return null;
+```
+
+## [example|done] Task List
+```task
+- [x] Set up project structure
+- [x] Install dependencies
+- [ ] Write unit tests
+- [ ] Set up CI/CD
+- [ ] Deploy to staging
+```
+
+## [example|done] Media
+```media
+type: image/png
+src: ./diagrams/architecture.png
+alt: System Architecture Diagram
+width: 800
+```
+
+## [example|done] Canvas
+```canvas
+{
+  "version": "1.0",
+  "elements": [
+    {"type": "rect", "x": 50, "y": 50, "width": 200, "height": 100, "fill": "#4f46e5"},
+    {"type": "text", "x": 100, "y": 100, "content": "Hello Canvas", "fontSize": 16}
+  ]
+}
+```
+
+## [example|done] Flowchart
+```flowchart
+start: Begin
+decision: Valid Input?
+  yes: Process
+  no: Error
+Process: Save to DB -> Success
+Error: Show Message -> Begin
+Success: End
+```
+
+## [example|done] Kanban Board
+```kanban
+| Backlog | To Do | In Progress | Done |
+|---------|-------|-------------|------|
+| Search feature | Auth tests | API docs | Project setup |
+| Dark mode | | Bug fixes | CI pipeline |
+```
+
+## [example|done] Python Code
+```python
+from typing import Optional
+from dataclasses import dataclass
+
+@dataclass
+class User:
+    id: str
+    email: str
+    name: str
+    role: Optional[str] = "user"
+
+    def is_admin(self) -> bool:
+        return self.role == "admin"
+
+def authenticate(token: str) -> Optional[User]:
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
+        return User(**payload["user"])
+    except jwt.InvalidTokenError:
+        return None
+```
+
+## [example|done] JavaScript Code
+```javascript
+class EventEmitter {
+  constructor() {
+    this.listeners = new Map();
+  }
+
+  on(event, callback) {
+    if (!this.listeners.has(event)) {
+      this.listeners.set(event, []);
+    }
+    this.listeners.get(event).push(callback);
+    return () => this.off(event, callback);
+  }
+
+  off(event, callback) {
+    const cbs = this.listeners.get(event);
+    if (cbs) {
+      this.listeners.set(event, cbs.filter(cb => cb !== callback));
+    }
+  }
+
+  emit(event, ...args) {
+    const cbs = this.listeners.get(event);
+    if (cbs) {
+      cbs.forEach(cb => cb(...args));
+    }
+  }
+}
+```
+
+## [example|done] TypeScript Code
+```typescript
+interface Result<T, E = Error> {
+  ok: boolean;
+  value?: T;
+  error?: E;
+}
+
+function safeParse<T>(json: string): Result<T> {
+  try {
+    const value = JSON.parse(json) as T;
+    return { ok: true, value };
+  } catch (error) {
+    return { ok: false, error: error as Error };
+  }
+}
+
+type UserRole = 'admin' | 'user' | 'viewer';
+
+function hasAccess(user: { role: UserRole }, requiredRole: UserRole): boolean {
+  const ROLES: Record<UserRole, number> = { admin: 3, user: 2, viewer: 1 };
+  return ROLES[user.role] >= ROLES[requiredRole];
+}
+```
+
+## [example|done] Rust Code
+```rust
+use std::collections::HashMap;
+use serde::{Deserialize, Serialize};
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct User {
+    pub id: String,
+    pub email: String,
+    pub name: String,
+    pub role: UserRole,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub enum UserRole {
+    Admin,
+    User,
+    Viewer,
+}
+
+impl User {
+    pub fn is_admin(&self) -> bool {
+        matches!(self.role, UserRole::Admin)
+    }
+
+    pub fn has_access(&self, required: &UserRole) -> bool {
+        self.role >= *required
+    }
+}
+```
+
+## [example|done] Bash Script
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+DEPLOY_ENV="${1:-staging}"
+TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+echo "[${TIMESTAMP}] Deploying to ${DEPLOY_ENV}..."
+
+docker build -t "app:${DEPLOY_ENV}" .
+docker push "app:${DEPLOY_ENV}"
+
+kubectl set image "deployment/app-${DEPLOY_ENV}" \
+  "app=app:${DEPLOY_ENV}"
+
+kubectl rollout status "deployment/app-${DEPLOY_ENV}"
+
+echo "[$(date -u +"%Y-%m-%dT%H:%M:%SZ")] Deploy complete!"
+```
+
+## [example|done] YAML Config
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: emd-api
+  labels:
+    app: emd
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: emd
+  template:
+    metadata:
+      labels:
+        app: emd
+    spec:
+      containers:
+        - name: api
+          image: everthink/emd-api:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: emd-secrets
+                  key: database-url
+```
+
+## [example|done] JSON Data
+```json
+{
+  "name": "@everthink/react-emd",
+  "version": "0.1.0",
+  "exports": {
+    ".": "./dist/index.js",
+    "./editor": "./dist/editor.js",
+    "./viewer": "./dist/viewer.js"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  }
+}
+```

@@ -1,0 +1,132 @@
+[meta] Everthink EMD — Project Dashboard
+Version: 0.1.0
+Repository: github.com/everthink-co/emd
+Team: @core-team (4 engineers)
+
+## [summary|done] Project Overview
+EMD (Everything MarkDown) is a typed, semantic superset of Markdown. Every section has a type ([task], [decision], [api], etc.) and optional status. It adds semantic links, wiki-links, transclusions, and typed code blocks. The project builds a Rust parser, WASM core, TypeScript React SDK, CLI toolchain, and VS Code extension.
+
+**Core metrics:**
+- Parser speed: <5ms for 500-section file
+- WASM size: 383KB gzipped
+- React SDK: <200KB gzipped total
+- Test coverage: 218 tests across all packages
+
+## [memory|done] Key Architectural Learnings
+1. **CodeMirror 6 ViewPlugins are the right abstraction** — Each decoration sub-feature is a ViewPlugin, making them individually testable and composable. The compartment pattern for dynamic reconfiguration works well for feature toggles.
+2. **WASM via wasm-pack works in browsers and Node.js** — The `@everthink/emd` WASM package is consumed by both the React SDK and the CLI, with identical parse output.
+3. **CSS custom properties for theming is zero-runtime** — No CSS-in-JS needed. Theme switching is a single class swap on the root element. All 40+ color tokens cascade automatically.
+4. **Semantic types + statuses enable agent context loading** — The ContextLoader can extract summaries by type, load only `[task|pending]` sections, and enforce token budgets. This is the killer feature for AI agent integration.
+
+→ references: decisions.emd
+
+## [task|done] Phase 1 — Rust Core
+→ contains: all-types.emd#task-section
+Complete parser + validator + WASM package.
+**Delivered:** npm package `@everthink/emd` v0.1.0 ✅
+
+### [subtask|done] Parser Implementation
+Lexer (logos) + parser (pulldown-cmark extensions).
+All 24 section types and 6 statuses supported.
+
+### [subtask|done] Validator
+Cross-file link resolution, status consistency, graph validation.
+
+### [subtask|done] WASM Target
+wasm-pack build for browser + Node.js.
+
+## [task|done] Phase 2 — Tooling
+CLI, LSP, ContextLoader, Graph executor.
+**Delivered:** `emd` CLI binary ✅
+
+### [subtask|done] CLI Toolchain
+`emd check`, `emd fmt`, `emd query`, `emd graph`, `emd export`
+
+### [subtask|done] LSP Server
+Diagnostics, hover, go-to-def, completion, code actions
+
+## [task|done] Phase 3 — Interpreter
+Block engine, 11 block plugins, workspace shell.
+**Delivered:** Full web editor ✅
+
+## [task|in-progress] Phase 4 — Advanced Features
+Canvas, AI integration, distribution.
+Progress: 15%
+
+### [subtask|done] Canvas Drawing Engine
+Drawing engine with zoom, pan, grid, and export.
+
+### [subtask|pending] Flowchart View
+Flowchart block with drag-to-connect nodes.
+
+### [subtask|pending] AI Integration
+Highlight menu, inline AI, chat panel, LLM providers.
+
+## [task|in-progress] Phase 5 — SDKs
+Multi-platform editor distribution.
+Progress: 40%
+
+### [subtask|done] Fa-LiveMd
+CM6 ViewPlugin + 10 decoration sub-features + integration.
+218 tests passing ✅
+
+### [subtask|done] Fb-Components
+EmdEditor and EmdViewer React components.
+Production ready ✅
+
+### [subtask|in-progress] Fc-Playground
+Vite React dev app + sample files + block tester.
+
+### [subtask|pending] Fd-AiPanel
+Chat UI + context bridge + streaming + apply.
+
+## [decision|done] Stack Decisions
+See [[decisions]] for full decision log.
+→ references: decisions.emd
+
+Key decisions:
+- TypeScript + React for SDK ✅
+- CodeMirror 6 for editor core ✅
+- CSS variables for theming ✅
+- Vite for building ✅
+- Vitest for testing ✅
+
+## [log] Activity Log
+
+### [log|done] 2024-06-15 — Phase 4 Started
+Began working on canvas features. Drawing engine implemented.
+
+### [log|in-progress] 2024-06-14 — Phase 5 In Progress
+React SDK Fa-LiveMd and Fb-Components complete. Working on Fc-Playground.
+Build passes with 218 tests. EmdEditor and EmdViewer are production-ready.
+
+### [log|done] 2024-06-10 — Phase 3 Complete
+Block engine, 11 block plugins, workspace shell all complete.
+41 tests passing, build succeeds.
+
+### [log|done] 2024-05-20 — Phase 2 Complete
+CLI toolchain, LSP server, graph executor all complete.
+26 tasks done. 4 tools: emd-graph, emd-lsp, emd-cli, emd-wasm.
+
+### [log|done] 2024-04-30 — Phase 1 Complete
+Parser + validator + WASM package published.
+npm install @everthink/emd works in Chrome/Firefox/Safari/Node.js.
+
+## [config|done] Environment Configurations
+
+### [config|done] Development
+```yaml
+NODE_ENV: development
+API_URL: http://localhost:8080
+WS_URL: ws://localhost:8080/ws
+LOG_LEVEL: debug
+```
+
+### [config|done] Production
+```yaml
+NODE_ENV: production
+API_URL: https://api.emd.dev
+WS_URL: wss://api.emd.dev/ws
+LOG_LEVEL: info
+SENTRY_DSN: https://...@sentry.io/...
+```

@@ -164,7 +164,7 @@
 |---|------|--------|
 | 1 | F2-ReactSdk: Fa-LiveMd — CM6 ViewPlugin + 10 decoration sub-features + integration | [x] |
 | 2 | F2-ReactSdk: Fb-Components — <EmdEditor> <EmdViewer> hooks plugin API | [x] |
-| 3 | F2-ReactSdk: Fc-Playground — Vite dev app + sample files + block tester | [ ] |
+| 3 | F2-ReactSdk: Fc-Playground — Vite dev app + sample files + block tester | [x] |
 | 4 | F2-ReactSdk: Fd-AiPanel — chat UI + context bridge + streaming + apply | [ ] |
 | 5 | F3-RustSdk: Fa-GpuiEngine — GPU text rendering + 8 decoration sub-features | [ ] |
 | 6 | F3-RustSdk: Fb-Components — EmdEditor entity + EmdViewer + plugin API | [ ] |

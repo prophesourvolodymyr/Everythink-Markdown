@@ -1,0 +1,85 @@
+## [task|done] Project Initialization
+Set up the project structure, dependencies, and configuration.
+→ precedes: task.emd#deploy-v1
+- [x] Initialize git repo
+- [x] Set up monorepo structure
+- [x] Configure ESLint and Prettier
+- [x] Set up CI pipeline
+
+## [task|in-progress] Authentication Module
+Implement user authentication with JWT and OAuth.
+→ depends: api-spec.emd#auth-endpoints
+→ requires: config.emd
+Progress: 60%
+
+- [x] User registration endpoint
+- [x] Login endpoint
+- [x] JWT token generation
+- [ ] Password reset flow
+- [ ] OAuth integration (Google, GitHub)
+- [ ] Rate limiting
+
+### [subtask|done] Database Schema for Auth
+Created users and sessions tables.
+
+### [subtask|in-progress] Session Management
+Implementing JWT refresh token rotation.
+
+## [task|pending] Search Feature
+Full-text search across all documents.
+→ requires: model.emd#search-index
+- [ ] Elasticsearch setup
+- [ ] Index mapping
+- [ ] Search API endpoint
+- [ ] Search UI component
+- [ ] Autocomplete suggestions
+
+## [task|pending] Dark Mode Support
+Implement theme switching with CSS variables.
+→ related: config.emd#theme-settings
+- [ ] Define color tokens
+- [ ] Create theme context
+- [ ] Update all components
+- [ ] Persist user preference
+
+## [task|blocked] Mobile Push Notifications
+Send push notifications to mobile devices.
+→ blocked: api-spec.emd#notification-service
+BLOCKER: Waiting for notification service to be deployed.
+
+- [ ] FCM integration
+- [ ] APNs certificates
+- [ ] Notification templates
+- [ ] User preferences UI
+
+## [task|done] API Rate Limiting
+Implement token bucket rate limiter.
+- [x] Token bucket algorithm
+- [x] Per-user and per-IP limits
+- [x] Rate limit headers
+- [x] Burst allowance
+
+## [task|cancelled] gRPC Migration
+Migrate REST endpoints to gRPC.
+CANCELLED: Team decided to stick with REST + OpenAPI.
+
+## [task|done] Database Migration Tooling
+Set up database migration framework.
+- [x] Migration file format
+- [x] Up/down migrations
+- [x] Migration CLI command
+- [x] CI integration for auto-migration
+
+## [task|in-progress] Error Monitoring
+Set up Sentry for error tracking and alerting.
+Progress: 45%
+
+- [x] Sentry SDK integration
+- [x] Error boundary components
+- [ ] Custom error contexts
+- [ ] Alert rules
+- [ ] Performance monitoring
+
+## [task|archived] Legacy API Sunset
+Remove deprecated v1 API endpoints.
+ARCHIVED: Extended sunset date to Q3 2025.

@@ -1,0 +1,71 @@
+[meta] Malformed EMD Test Cases
+This file contains intentionally broken EMD syntax.
+Each section describes what is broken and what the expected diagnostic output should be.
+Used for testing parser error recovery and diagnostic rendering.
+
+## [bug|done] Missing Closing Bracket in Section Header
+This section header is missing the closing bracket: `## [task` — the parser should recover and treat it as a plain heading.
+Expected diagnostic: "Malformed section header: missing closing bracket" at line 17.
+
+## [bug|done] Unknown Section Type
+## [faketype|done] This Type Does Not Exist
+Content for a section with an invalid type. The parser should flag this as an unknown type but still parse the section structure.
+Expected diagnostic: "Unknown section type: 'faketype'" at line 22.
+
+## [bug|done] Unknown Status
+## [task|notreal] Invalid Status
+Content for a section with an invalid status. The status should be ignored but the section type should still parse.
+Expected diagnostic: "Unknown status: 'notreal'" at line 28.
+
+## [bug|done] Invalid Status Format
+## [task|done|extra] Too Many Bars
+Content for a section with too many status separators. Parser should handle gracefully.
+Expected diagnostic: "Malformed section header: unexpected token after status" at line 34.
+
+## [bug|done] Broken Semantic Link
+→ not-a-valid-link-format
+This semantic link is missing the colon separator. The parser should flag it as a malformed link.
+Expected diagnostic: "Invalid semantic link: missing colon" at line 39.
+
+## [bug|done] Unclosed Code Fence
+```python
+def broken_function():
+  print("This code fence never closes")
+  return None
+
+The parser should detect that the code fence was never closed and include all remaining text.
+Expected diagnostic: "Unclosed code fence starting at line 45" at line 45.
+
+## [bug|done] Unclosed Wiki Link
+References to [[some-page should be rendered as plain text since the brackets are not balanced.
+Expected diagnostic: "Unclosed wiki-link bracket" at line 56.
+
+## [bug|done] Malformed Status in Nested Section
+### [task|not-real-status] Invalid Nested Status
+The status contains hyphens which may be ambiguous with section nesting.
+Expected diagnostic: "Unknown status in nested section" at line 62.
+
+## [bug|done] Empty Section Type
+## [|done] Empty Type
+Content for a section with an empty type. The parser should create a section with an empty or unknown type.
+Expected diagnostic: "Empty section type" at line 67.
+
+## [bug|done] Whitespace-Only Type
+## [   ] Whitespace Type
+Content for a section with whitespace-only type. The parser should strip whitespace and treat as empty type.
+Expected diagnostic: "Empty section type after trimming" at line 72.
+
+## [bug|done] Multiple Brackets
+## [[extra] section] Double Brackets
+Content where the type has extra brackets. The parser should handle the inner brackets.
+Expected diagnostic: "Malformed section type: nested brackets" at line 77.
+
+## [bug|done] Link with No Target
+→ depends:
+This semantic link has a relation but no target. Parser should flag it.
+Expected diagnostic: "Semantic link missing target" at line 82.
+
+## [bug|done] Bare Arrow
+→
+This is just an arrow with no relation or target. Parser should ignore or flag.
+Expected diagnostic: "Malformed semantic link: missing relation" at line 87.

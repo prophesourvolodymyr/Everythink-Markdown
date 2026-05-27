@@ -1,0 +1,1769 @@
+[meta] Large File — Performance Test
+Generated file with 500+ sections for testing decoration rebuild speed.
+
+## [task|done] Section 1
+Content for section 1 of type task with status done.
+→ depends: section-14.emd
+See [[section-8]] for more details.
+
+## [decision|pending] Section 2
+Content for section 2 of type decision with status pending.
+
+## [spec|in-progress] Section 3
+Content for section 3 of type spec with status in-progress.
+
+## [api|blocked] Section 4
+Content for section 4 of type api with status blocked.
+See [[section-11]] for more details.
+
+## [bug|archived] Section 5
+Content for section 5 of type bug with status archived.
+
+## [idea|cancelled] Section 6
+Content for section 6 of type idea with status cancelled.
+→ blocks: section-19.emd
+
+## [verify|done] Section 7
+Content for section 7 of type verify with status done.
+See [[section-14]] for more details.
+
+## [summary|pending] Section 8
+Content for section 8 of type summary with status pending.
+
+## [detail|in-progress] Section 9
+Content for section 9 of type detail with status in-progress.
+
+## [memory|blocked] Section 10
+Content for section 10 of type memory with status blocked.
+See [[section-17]] for more details.
+
+## [log|archived] Section 11
+Content for section 11 of type log with status archived.
+→ related: section-24.emd
+
+## [meta|cancelled] Section 12
+Content for section 12 of type meta with status cancelled.
+
+## [config|done] Section 13
+Content for section 13 of type config with status done.
+See [[section-20]] for more details.
+
+## [schema|pending] Section 14
+Content for section 14 of type schema with status pending.
+
+## [model|in-progress] Section 15
+Content for section 15 of type model with status in-progress.
+
+## [agent|blocked] Section 16
+Content for section 16 of type agent with status blocked.
+→ requires: section-29.emd
+See [[section-23]] for more details.
+
+## [graph|archived] Section 17
+Content for section 17 of type graph with status archived.
+
+## [prompt|cancelled] Section 18
+Content for section 18 of type prompt with status cancelled.
+
+## [template|done] Section 19
+Content for section 19 of type template with status done.
+See [[section-26]] for more details.
+
+## [human|pending] Section 20
+Content for section 20 of type human with status pending.
+
+## [draw|in-progress] Section 21
+Content for section 21 of type draw with status in-progress.
+→ follows: section-34.emd
+
+## [flow|blocked] Section 22
+Content for section 22 of type flow with status blocked.
+See [[section-29]] for more details.
+
+## [kanban|archived] Section 23
+Content for section 23 of type kanban with status archived.
+
+## [example|cancelled] Section 24
+Content for section 24 of type example with status cancelled.
+
+## [task|done] Section 25
+Content for section 25 of type task with status done.
+See [[section-32]] for more details.
+
+## [decision|pending] Section 26
+Content for section 26 of type decision with status pending.
+→ precedes: section-39.emd
+
+## [spec|in-progress] Section 27
+Content for section 27 of type spec with status in-progress.
+
+## [api|blocked] Section 28
+Content for section 28 of type api with status blocked.
+See [[section-35]] for more details.
+
+## [bug|archived] Section 29
+Content for section 29 of type bug with status archived.
+
+## [idea|cancelled] Section 30
+Content for section 30 of type idea with status cancelled.
+
+## [verify|done] Section 31
+Content for section 31 of type verify with status done.
+→ extends: section-44.emd
+See [[section-38]] for more details.
+
+## [summary|pending] Section 32
+Content for section 32 of type summary with status pending.
+
+## [detail|in-progress] Section 33
+Content for section 33 of type detail with status in-progress.
+
+## [memory|blocked] Section 34
+Content for section 34 of type memory with status blocked.
+See [[section-41]] for more details.
+
+## [log|archived] Section 35
+Content for section 35 of type log with status archived.
+
+## [meta|cancelled] Section 36
+Content for section 36 of type meta with status cancelled.
+→ implements: section-49.emd
+
+## [config|done] Section 37
+Content for section 37 of type config with status done.
+See [[section-44]] for more details.
+
+## [schema|pending] Section 38
+Content for section 38 of type schema with status pending.
+
+## [model|in-progress] Section 39
+Content for section 39 of type model with status in-progress.
+
+## [agent|blocked] Section 40
+Content for section 40 of type agent with status blocked.
+See [[section-47]] for more details.
+
+## [graph|archived] Section 41
+Content for section 41 of type graph with status archived.
+→ defines: section-54.emd
+
+## [prompt|cancelled] Section 42
+Content for section 42 of type prompt with status cancelled.
+
+## [template|done] Section 43
+Content for section 43 of type template with status done.
+See [[section-50]] for more details.
+
+## [human|pending] Section 44
+Content for section 44 of type human with status pending.
+
+## [draw|in-progress] Section 45
+Content for section 45 of type draw with status in-progress.
+
+## [flow|blocked] Section 46
+Content for section 46 of type flow with status blocked.
+→ references: section-59.emd
+See [[section-53]] for more details.
+
+## [kanban|archived] Section 47
+Content for section 47 of type kanban with status archived.
+
+## [example|cancelled] Section 48
+Content for section 48 of type example with status cancelled.
+
+## [task|done] Section 49
+Content for section 49 of type task with status done.
+See [[section-56]] for more details.
+
+## [decision|pending] Section 50
+Content for section 50 of type decision with status pending.
+
+## [spec|in-progress] Section 51
+Content for section 51 of type spec with status in-progress.
+→ contains: section-64.emd
+
+## [api|blocked] Section 52
+Content for section 52 of type api with status blocked.
+See [[section-59]] for more details.
+
+## [bug|archived] Section 53
+Content for section 53 of type bug with status archived.
+
+## [idea|cancelled] Section 54
+Content for section 54 of type idea with status cancelled.
+
+## [verify|done] Section 55
+Content for section 55 of type verify with status done.
+See [[section-62]] for more details.
+
+## [summary|pending] Section 56
+Content for section 56 of type summary with status pending.
+→ supersedes: section-69.emd
+
+## [detail|in-progress] Section 57
+Content for section 57 of type detail with status in-progress.
+
+## [memory|blocked] Section 58
+Content for section 58 of type memory with status blocked.
+See [[section-65]] for more details.
+
+## [log|archived] Section 59
+Content for section 59 of type log with status archived.
+
+## [meta|cancelled] Section 60
+Content for section 60 of type meta with status cancelled.
+
+## [config|done] Section 61
+Content for section 61 of type config with status done.
+→ conflicts: section-74.emd
+See [[section-68]] for more details.
+
+## [schema|pending] Section 62
+Content for section 62 of type schema with status pending.
+
+## [model|in-progress] Section 63
+Content for section 63 of type model with status in-progress.
+
+## [agent|blocked] Section 64
+Content for section 64 of type agent with status blocked.
+See [[section-71]] for more details.
+
+## [graph|archived] Section 65
+Content for section 65 of type graph with status archived.
+
+## [prompt|cancelled] Section 66
+Content for section 66 of type prompt with status cancelled.
+→ mirrors: section-79.emd
+
+## [template|done] Section 67
+Content for section 67 of type template with status done.
+See [[section-74]] for more details.
+
+## [human|pending] Section 68
+Content for section 68 of type human with status pending.
+
+## [draw|in-progress] Section 69
+Content for section 69 of type draw with status in-progress.
+
+## [flow|blocked] Section 70
+Content for section 70 of type flow with status blocked.
+See [[section-77]] for more details.
+
+## [kanban|archived] Section 71
+Content for section 71 of type kanban with status archived.
+→ splits: section-84.emd
+
+## [example|cancelled] Section 72
+Content for section 72 of type example with status cancelled.
+
+## [task|done] Section 73
+Content for section 73 of type task with status done.
+See [[section-80]] for more details.
+
+## [decision|pending] Section 74
+Content for section 74 of type decision with status pending.
+
+## [spec|in-progress] Section 75
+Content for section 75 of type spec with status in-progress.
+
+## [api|blocked] Section 76
+Content for section 76 of type api with status blocked.
+→ merges: section-89.emd
+See [[section-83]] for more details.
+
+## [bug|archived] Section 77
+Content for section 77 of type bug with status archived.
+
+## [idea|cancelled] Section 78
+Content for section 78 of type idea with status cancelled.
+
+## [verify|done] Section 79
+Content for section 79 of type verify with status done.
+See [[section-86]] for more details.
+
+## [summary|pending] Section 80
+Content for section 80 of type summary with status pending.
+
+## [detail|in-progress] Section 81
+Content for section 81 of type detail with status in-progress.
+→ generates: section-94.emd
+
+## [memory|blocked] Section 82
+Content for section 82 of type memory with status blocked.
+See [[section-89]] for more details.
+
+## [log|archived] Section 83
+Content for section 83 of type log with status archived.
+
+## [meta|cancelled] Section 84
+Content for section 84 of type meta with status cancelled.
+
+## [config|done] Section 85
+Content for section 85 of type config with status done.
+See [[section-92]] for more details.
+
+## [schema|pending] Section 86
+Content for section 86 of type schema with status pending.
+→ consumes: section-99.emd
+
+## [model|in-progress] Section 87
+Content for section 87 of type model with status in-progress.
+
+## [agent|blocked] Section 88
+Content for section 88 of type agent with status blocked.
+See [[section-95]] for more details.
+
+## [graph|archived] Section 89
+Content for section 89 of type graph with status archived.
+
+## [prompt|cancelled] Section 90
+Content for section 90 of type prompt with status cancelled.
+
+## [template|done] Section 91
+Content for section 91 of type template with status done.
+→ depends: section-104.emd
+See [[section-98]] for more details.
+
+## [human|pending] Section 92
+Content for section 92 of type human with status pending.
+
+## [draw|in-progress] Section 93
+Content for section 93 of type draw with status in-progress.
+
+## [flow|blocked] Section 94
+Content for section 94 of type flow with status blocked.
+See [[section-101]] for more details.
+
+## [kanban|archived] Section 95
+Content for section 95 of type kanban with status archived.
+
+## [example|cancelled] Section 96
+Content for section 96 of type example with status cancelled.
+→ blocks: section-109.emd
+
+## [task|done] Section 97
+Content for section 97 of type task with status done.
+See [[section-104]] for more details.
+
+## [decision|pending] Section 98
+Content for section 98 of type decision with status pending.
+
+## [spec|in-progress] Section 99
+Content for section 99 of type spec with status in-progress.
+
+## [api|blocked] Section 100
+Content for section 100 of type api with status blocked.
+See [[section-107]] for more details.
+
+## [bug|archived] Section 101
+Content for section 101 of type bug with status archived.
+→ related: section-114.emd
+
+## [idea|cancelled] Section 102
+Content for section 102 of type idea with status cancelled.
+
+## [verify|done] Section 103
+Content for section 103 of type verify with status done.
+See [[section-110]] for more details.
+
+## [summary|pending] Section 104
+Content for section 104 of type summary with status pending.
+
+## [detail|in-progress] Section 105
+Content for section 105 of type detail with status in-progress.
+
+## [memory|blocked] Section 106
+Content for section 106 of type memory with status blocked.
+→ requires: section-119.emd
+See [[section-113]] for more details.
+
+## [log|archived] Section 107
+Content for section 107 of type log with status archived.
+
+## [meta|cancelled] Section 108
+Content for section 108 of type meta with status cancelled.
+
+## [config|done] Section 109
+Content for section 109 of type config with status done.
+See [[section-116]] for more details.
+
+## [schema|pending] Section 110
+Content for section 110 of type schema with status pending.
+
+## [model|in-progress] Section 111
+Content for section 111 of type model with status in-progress.
+→ follows: section-124.emd
+
+## [agent|blocked] Section 112
+Content for section 112 of type agent with status blocked.
+See [[section-119]] for more details.
+
+## [graph|archived] Section 113
+Content for section 113 of type graph with status archived.
+
+## [prompt|cancelled] Section 114
+Content for section 114 of type prompt with status cancelled.
+
+## [template|done] Section 115
+Content for section 115 of type template with status done.
+See [[section-122]] for more details.
+
+## [human|pending] Section 116
+Content for section 116 of type human with status pending.
+→ precedes: section-129.emd
+
+## [draw|in-progress] Section 117
+Content for section 117 of type draw with status in-progress.
+
+## [flow|blocked] Section 118
+Content for section 118 of type flow with status blocked.
+See [[section-125]] for more details.
+
+## [kanban|archived] Section 119
+Content for section 119 of type kanban with status archived.
+
+## [example|cancelled] Section 120
+Content for section 120 of type example with status cancelled.
+
+## [task|done] Section 121
+Content for section 121 of type task with status done.
+→ extends: section-134.emd
+See [[section-128]] for more details.
+
+## [decision|pending] Section 122
+Content for section 122 of type decision with status pending.
+
+## [spec|in-progress] Section 123
+Content for section 123 of type spec with status in-progress.
+
+## [api|blocked] Section 124
+Content for section 124 of type api with status blocked.
+See [[section-131]] for more details.
+
+## [bug|archived] Section 125
+Content for section 125 of type bug with status archived.
+
+## [idea|cancelled] Section 126
+Content for section 126 of type idea with status cancelled.
+→ implements: section-139.emd
+
+## [verify|done] Section 127
+Content for section 127 of type verify with status done.
+See [[section-134]] for more details.
+
+## [summary|pending] Section 128
+Content for section 128 of type summary with status pending.
+
+## [detail|in-progress] Section 129
+Content for section 129 of type detail with status in-progress.
+
+## [memory|blocked] Section 130
+Content for section 130 of type memory with status blocked.
+See [[section-137]] for more details.
+
+## [log|archived] Section 131
+Content for section 131 of type log with status archived.
+→ defines: section-144.emd
+
+## [meta|cancelled] Section 132
+Content for section 132 of type meta with status cancelled.
+
+## [config|done] Section 133
+Content for section 133 of type config with status done.
+See [[section-140]] for more details.
+
+## [schema|pending] Section 134
+Content for section 134 of type schema with status pending.
+
+## [model|in-progress] Section 135
+Content for section 135 of type model with status in-progress.
+
+## [agent|blocked] Section 136
+Content for section 136 of type agent with status blocked.
+→ references: section-149.emd
+See [[section-143]] for more details.
+
+## [graph|archived] Section 137
+Content for section 137 of type graph with status archived.
+
+## [prompt|cancelled] Section 138
+Content for section 138 of type prompt with status cancelled.
+
+## [template|done] Section 139
+Content for section 139 of type template with status done.
+See [[section-146]] for more details.
+
+## [human|pending] Section 140
+Content for section 140 of type human with status pending.
+
+## [draw|in-progress] Section 141
+Content for section 141 of type draw with status in-progress.
+→ contains: section-154.emd
+
+## [flow|blocked] Section 142
+Content for section 142 of type flow with status blocked.
+See [[section-149]] for more details.
+
+## [kanban|archived] Section 143
+Content for section 143 of type kanban with status archived.
+
+## [example|cancelled] Section 144
+Content for section 144 of type example with status cancelled.
+
+## [task|done] Section 145
+Content for section 145 of type task with status done.
+See [[section-152]] for more details.
+
+## [decision|pending] Section 146
+Content for section 146 of type decision with status pending.
+→ supersedes: section-159.emd
+
+## [spec|in-progress] Section 147
+Content for section 147 of type spec with status in-progress.
+
+## [api|blocked] Section 148
+Content for section 148 of type api with status blocked.
+See [[section-155]] for more details.
+
+## [bug|archived] Section 149
+Content for section 149 of type bug with status archived.
+
+## [idea|cancelled] Section 150
+Content for section 150 of type idea with status cancelled.
+
+## [verify|done] Section 151
+Content for section 151 of type verify with status done.
+→ conflicts: section-164.emd
+See [[section-158]] for more details.
+
+## [summary|pending] Section 152
+Content for section 152 of type summary with status pending.
+
+## [detail|in-progress] Section 153
+Content for section 153 of type detail with status in-progress.
+
+## [memory|blocked] Section 154
+Content for section 154 of type memory with status blocked.
+See [[section-161]] for more details.
+
+## [log|archived] Section 155
+Content for section 155 of type log with status archived.
+
+## [meta|cancelled] Section 156
+Content for section 156 of type meta with status cancelled.
+→ mirrors: section-169.emd
+
+## [config|done] Section 157
+Content for section 157 of type config with status done.
+See [[section-164]] for more details.
+
+## [schema|pending] Section 158
+Content for section 158 of type schema with status pending.
+
+## [model|in-progress] Section 159
+Content for section 159 of type model with status in-progress.
+
+## [agent|blocked] Section 160
+Content for section 160 of type agent with status blocked.
+See [[section-167]] for more details.
+
+## [graph|archived] Section 161
+Content for section 161 of type graph with status archived.
+→ splits: section-174.emd
+
+## [prompt|cancelled] Section 162
+Content for section 162 of type prompt with status cancelled.
+
+## [template|done] Section 163
+Content for section 163 of type template with status done.
+See [[section-170]] for more details.
+
+## [human|pending] Section 164
+Content for section 164 of type human with status pending.
+
+## [draw|in-progress] Section 165
+Content for section 165 of type draw with status in-progress.
+
+## [flow|blocked] Section 166
+Content for section 166 of type flow with status blocked.
+→ merges: section-179.emd
+See [[section-173]] for more details.
+
+## [kanban|archived] Section 167
+Content for section 167 of type kanban with status archived.
+
+## [example|cancelled] Section 168
+Content for section 168 of type example with status cancelled.
+
+## [task|done] Section 169
+Content for section 169 of type task with status done.
+See [[section-176]] for more details.
+
+## [decision|pending] Section 170
+Content for section 170 of type decision with status pending.
+
+## [spec|in-progress] Section 171
+Content for section 171 of type spec with status in-progress.
+→ generates: section-184.emd
+
+## [api|blocked] Section 172
+Content for section 172 of type api with status blocked.
+See [[section-179]] for more details.
+
+## [bug|archived] Section 173
+Content for section 173 of type bug with status archived.
+
+## [idea|cancelled] Section 174
+Content for section 174 of type idea with status cancelled.
+
+## [verify|done] Section 175
+Content for section 175 of type verify with status done.
+See [[section-182]] for more details.
+
+## [summary|pending] Section 176
+Content for section 176 of type summary with status pending.
+→ consumes: section-189.emd
+
+## [detail|in-progress] Section 177
+Content for section 177 of type detail with status in-progress.
+
+## [memory|blocked] Section 178
+Content for section 178 of type memory with status blocked.
+See [[section-185]] for more details.
+
+## [log|archived] Section 179
+Content for section 179 of type log with status archived.
+
+## [meta|cancelled] Section 180
+Content for section 180 of type meta with status cancelled.
+
+## [config|done] Section 181
+Content for section 181 of type config with status done.
+→ depends: section-194.emd
+See [[section-188]] for more details.
+
+## [schema|pending] Section 182
+Content for section 182 of type schema with status pending.
+
+## [model|in-progress] Section 183
+Content for section 183 of type model with status in-progress.
+
+## [agent|blocked] Section 184
+Content for section 184 of type agent with status blocked.
+See [[section-191]] for more details.
+
+## [graph|archived] Section 185
+Content for section 185 of type graph with status archived.
+
+## [prompt|cancelled] Section 186
+Content for section 186 of type prompt with status cancelled.
+→ blocks: section-199.emd
+
+## [template|done] Section 187
+Content for section 187 of type template with status done.
+See [[section-194]] for more details.
+
+## [human|pending] Section 188
+Content for section 188 of type human with status pending.
+
+## [draw|in-progress] Section 189
+Content for section 189 of type draw with status in-progress.
+
+## [flow|blocked] Section 190
+Content for section 190 of type flow with status blocked.
+See [[section-197]] for more details.
+
+## [kanban|archived] Section 191
+Content for section 191 of type kanban with status archived.
+→ related: section-204.emd
+
+## [example|cancelled] Section 192
+Content for section 192 of type example with status cancelled.
+
+## [task|done] Section 193
+Content for section 193 of type task with status done.
+See [[section-200]] for more details.
+
+## [decision|pending] Section 194
+Content for section 194 of type decision with status pending.
+
+## [spec|in-progress] Section 195
+Content for section 195 of type spec with status in-progress.
+
+## [api|blocked] Section 196
+Content for section 196 of type api with status blocked.
+→ requires: section-209.emd
+See [[section-203]] for more details.
+
+## [bug|archived] Section 197
+Content for section 197 of type bug with status archived.
+
+## [idea|cancelled] Section 198
+Content for section 198 of type idea with status cancelled.
+
+## [verify|done] Section 199
+Content for section 199 of type verify with status done.
+See [[section-206]] for more details.
+
+## [summary|pending] Section 200
+Content for section 200 of type summary with status pending.
+
+## [detail|in-progress] Section 201
+Content for section 201 of type detail with status in-progress.
+→ follows: section-214.emd
+
+## [memory|blocked] Section 202
+Content for section 202 of type memory with status blocked.
+See [[section-209]] for more details.
+
+## [log|archived] Section 203
+Content for section 203 of type log with status archived.
+
+## [meta|cancelled] Section 204
+Content for section 204 of type meta with status cancelled.
+
+## [config|done] Section 205
+Content for section 205 of type config with status done.
+See [[section-212]] for more details.
+
+## [schema|pending] Section 206
+Content for section 206 of type schema with status pending.
+→ precedes: section-219.emd
+
+## [model|in-progress] Section 207
+Content for section 207 of type model with status in-progress.
+
+## [agent|blocked] Section 208
+Content for section 208 of type agent with status blocked.
+See [[section-215]] for more details.
+
+## [graph|archived] Section 209
+Content for section 209 of type graph with status archived.
+
+## [prompt|cancelled] Section 210
+Content for section 210 of type prompt with status cancelled.
+
+## [template|done] Section 211
+Content for section 211 of type template with status done.
+→ extends: section-224.emd
+See [[section-218]] for more details.
+
+## [human|pending] Section 212
+Content for section 212 of type human with status pending.
+
+## [draw|in-progress] Section 213
+Content for section 213 of type draw with status in-progress.
+
+## [flow|blocked] Section 214
+Content for section 214 of type flow with status blocked.
+See [[section-221]] for more details.
+
+## [kanban|archived] Section 215
+Content for section 215 of type kanban with status archived.
+
+## [example|cancelled] Section 216
+Content for section 216 of type example with status cancelled.
+→ implements: section-229.emd
+
+## [task|done] Section 217
+Content for section 217 of type task with status done.
+See [[section-224]] for more details.
+
+## [decision|pending] Section 218
+Content for section 218 of type decision with status pending.
+
+## [spec|in-progress] Section 219
+Content for section 219 of type spec with status in-progress.
+
+## [api|blocked] Section 220
+Content for section 220 of type api with status blocked.
+See [[section-227]] for more details.
+
+## [bug|archived] Section 221
+Content for section 221 of type bug with status archived.
+→ defines: section-234.emd
+
+## [idea|cancelled] Section 222
+Content for section 222 of type idea with status cancelled.
+
+## [verify|done] Section 223
+Content for section 223 of type verify with status done.
+See [[section-230]] for more details.
+
+## [summary|pending] Section 224
+Content for section 224 of type summary with status pending.
+
+## [detail|in-progress] Section 225
+Content for section 225 of type detail with status in-progress.
+
+## [memory|blocked] Section 226
+Content for section 226 of type memory with status blocked.
+→ references: section-239.emd
+See [[section-233]] for more details.
+
+## [log|archived] Section 227
+Content for section 227 of type log with status archived.
+
+## [meta|cancelled] Section 228
+Content for section 228 of type meta with status cancelled.
+
+## [config|done] Section 229
+Content for section 229 of type config with status done.
+See [[section-236]] for more details.
+
+## [schema|pending] Section 230
+Content for section 230 of type schema with status pending.
+
+## [model|in-progress] Section 231
+Content for section 231 of type model with status in-progress.
+→ contains: section-244.emd
+
+## [agent|blocked] Section 232
+Content for section 232 of type agent with status blocked.
+See [[section-239]] for more details.
+
+## [graph|archived] Section 233
+Content for section 233 of type graph with status archived.
+
+## [prompt|cancelled] Section 234
+Content for section 234 of type prompt with status cancelled.
+
+## [template|done] Section 235
+Content for section 235 of type template with status done.
+See [[section-242]] for more details.
+
+## [human|pending] Section 236
+Content for section 236 of type human with status pending.
+→ supersedes: section-249.emd
+
+## [draw|in-progress] Section 237
+Content for section 237 of type draw with status in-progress.
+
+## [flow|blocked] Section 238
+Content for section 238 of type flow with status blocked.
+See [[section-245]] for more details.
+
+## [kanban|archived] Section 239
+Content for section 239 of type kanban with status archived.
+
+## [example|cancelled] Section 240
+Content for section 240 of type example with status cancelled.
+
+## [task|done] Section 241
+Content for section 241 of type task with status done.
+→ conflicts: section-254.emd
+See [[section-248]] for more details.
+
+## [decision|pending] Section 242
+Content for section 242 of type decision with status pending.
+
+## [spec|in-progress] Section 243
+Content for section 243 of type spec with status in-progress.
+
+## [api|blocked] Section 244
+Content for section 244 of type api with status blocked.
+See [[section-251]] for more details.
+
+## [bug|archived] Section 245
+Content for section 245 of type bug with status archived.
+
+## [idea|cancelled] Section 246
+Content for section 246 of type idea with status cancelled.
+→ mirrors: section-259.emd
+
+## [verify|done] Section 247
+Content for section 247 of type verify with status done.
+See [[section-254]] for more details.
+
+## [summary|pending] Section 248
+Content for section 248 of type summary with status pending.
+
+## [detail|in-progress] Section 249
+Content for section 249 of type detail with status in-progress.
+
+## [memory|blocked] Section 250
+Content for section 250 of type memory with status blocked.
+See [[section-257]] for more details.
+
+## [log|archived] Section 251
+Content for section 251 of type log with status archived.
+→ splits: section-264.emd
+
+## [meta|cancelled] Section 252
+Content for section 252 of type meta with status cancelled.
+
+## [config|done] Section 253
+Content for section 253 of type config with status done.
+See [[section-260]] for more details.
+
+## [schema|pending] Section 254
+Content for section 254 of type schema with status pending.
+
+## [model|in-progress] Section 255
+Content for section 255 of type model with status in-progress.
+
+## [agent|blocked] Section 256
+Content for section 256 of type agent with status blocked.
+→ merges: section-269.emd
+See [[section-263]] for more details.
+
+## [graph|archived] Section 257
+Content for section 257 of type graph with status archived.
+
+## [prompt|cancelled] Section 258
+Content for section 258 of type prompt with status cancelled.
+
+## [template|done] Section 259
+Content for section 259 of type template with status done.
+See [[section-266]] for more details.
+
+## [human|pending] Section 260
+Content for section 260 of type human with status pending.
+
+## [draw|in-progress] Section 261
+Content for section 261 of type draw with status in-progress.
+→ generates: section-274.emd
+
+## [flow|blocked] Section 262
+Content for section 262 of type flow with status blocked.
+See [[section-269]] for more details.
+
+## [kanban|archived] Section 263
+Content for section 263 of type kanban with status archived.
+
+## [example|cancelled] Section 264
+Content for section 264 of type example with status cancelled.
+
+## [task|done] Section 265
+Content for section 265 of type task with status done.
+See [[section-272]] for more details.
+
+## [decision|pending] Section 266
+Content for section 266 of type decision with status pending.
+→ consumes: section-279.emd
+
+## [spec|in-progress] Section 267
+Content for section 267 of type spec with status in-progress.
+
+## [api|blocked] Section 268
+Content for section 268 of type api with status blocked.
+See [[section-275]] for more details.
+
+## [bug|archived] Section 269
+Content for section 269 of type bug with status archived.
+
+## [idea|cancelled] Section 270
+Content for section 270 of type idea with status cancelled.
+
+## [verify|done] Section 271
+Content for section 271 of type verify with status done.
+→ depends: section-284.emd
+See [[section-278]] for more details.
+
+## [summary|pending] Section 272
+Content for section 272 of type summary with status pending.
+
+## [detail|in-progress] Section 273
+Content for section 273 of type detail with status in-progress.
+
+## [memory|blocked] Section 274
+Content for section 274 of type memory with status blocked.
+See [[section-281]] for more details.
+
+## [log|archived] Section 275
+Content for section 275 of type log with status archived.
+
+## [meta|cancelled] Section 276
+Content for section 276 of type meta with status cancelled.
+→ blocks: section-289.emd
+
+## [config|done] Section 277
+Content for section 277 of type config with status done.
+See [[section-284]] for more details.
+
+## [schema|pending] Section 278
+Content for section 278 of type schema with status pending.
+
+## [model|in-progress] Section 279
+Content for section 279 of type model with status in-progress.
+
+## [agent|blocked] Section 280
+Content for section 280 of type agent with status blocked.
+See [[section-287]] for more details.
+
+## [graph|archived] Section 281
+Content for section 281 of type graph with status archived.
+→ related: section-294.emd
+
+## [prompt|cancelled] Section 282
+Content for section 282 of type prompt with status cancelled.
+
+## [template|done] Section 283
+Content for section 283 of type template with status done.
+See [[section-290]] for more details.
+
+## [human|pending] Section 284
+Content for section 284 of type human with status pending.
+
+## [draw|in-progress] Section 285
+Content for section 285 of type draw with status in-progress.
+
+## [flow|blocked] Section 286
+Content for section 286 of type flow with status blocked.
+→ requires: section-299.emd
+See [[section-293]] for more details.
+
+## [kanban|archived] Section 287
+Content for section 287 of type kanban with status archived.
+
+## [example|cancelled] Section 288
+Content for section 288 of type example with status cancelled.
+
+## [task|done] Section 289
+Content for section 289 of type task with status done.
+See [[section-296]] for more details.
+
+## [decision|pending] Section 290
+Content for section 290 of type decision with status pending.
+
+## [spec|in-progress] Section 291
+Content for section 291 of type spec with status in-progress.
+→ follows: section-304.emd
+
+## [api|blocked] Section 292
+Content for section 292 of type api with status blocked.
+See [[section-299]] for more details.
+
+## [bug|archived] Section 293
+Content for section 293 of type bug with status archived.
+
+## [idea|cancelled] Section 294
+Content for section 294 of type idea with status cancelled.
+
+## [verify|done] Section 295
+Content for section 295 of type verify with status done.
+See [[section-302]] for more details.
+
+## [summary|pending] Section 296
+Content for section 296 of type summary with status pending.
+→ precedes: section-309.emd
+
+## [detail|in-progress] Section 297
+Content for section 297 of type detail with status in-progress.
+
+## [memory|blocked] Section 298
+Content for section 298 of type memory with status blocked.
+See [[section-305]] for more details.
+
+## [log|archived] Section 299
+Content for section 299 of type log with status archived.
+
+## [meta|cancelled] Section 300
+Content for section 300 of type meta with status cancelled.
+
+## [config|done] Section 301
+Content for section 301 of type config with status done.
+→ extends: section-314.emd
+See [[section-308]] for more details.
+
+## [schema|pending] Section 302
+Content for section 302 of type schema with status pending.
+
+## [model|in-progress] Section 303
+Content for section 303 of type model with status in-progress.
+
+## [agent|blocked] Section 304
+Content for section 304 of type agent with status blocked.
+See [[section-311]] for more details.
+
+## [graph|archived] Section 305
+Content for section 305 of type graph with status archived.
+
+## [prompt|cancelled] Section 306
+Content for section 306 of type prompt with status cancelled.
+→ implements: section-319.emd
+
+## [template|done] Section 307
+Content for section 307 of type template with status done.
+See [[section-314]] for more details.
+
+## [human|pending] Section 308
+Content for section 308 of type human with status pending.
+
+## [draw|in-progress] Section 309
+Content for section 309 of type draw with status in-progress.
+
+## [flow|blocked] Section 310
+Content for section 310 of type flow with status blocked.
+See [[section-317]] for more details.
+
+## [kanban|archived] Section 311
+Content for section 311 of type kanban with status archived.
+→ defines: section-324.emd
+
+## [example|cancelled] Section 312
+Content for section 312 of type example with status cancelled.
+
+## [task|done] Section 313
+Content for section 313 of type task with status done.
+See [[section-320]] for more details.
+
+## [decision|pending] Section 314
+Content for section 314 of type decision with status pending.
+
+## [spec|in-progress] Section 315
+Content for section 315 of type spec with status in-progress.
+
+## [api|blocked] Section 316
+Content for section 316 of type api with status blocked.
+→ references: section-329.emd
+See [[section-323]] for more details.
+
+## [bug|archived] Section 317
+Content for section 317 of type bug with status archived.
+
+## [idea|cancelled] Section 318
+Content for section 318 of type idea with status cancelled.
+
+## [verify|done] Section 319
+Content for section 319 of type verify with status done.
+See [[section-326]] for more details.
+
+## [summary|pending] Section 320
+Content for section 320 of type summary with status pending.
+
+## [detail|in-progress] Section 321
+Content for section 321 of type detail with status in-progress.
+→ contains: section-334.emd
+
+## [memory|blocked] Section 322
+Content for section 322 of type memory with status blocked.
+See [[section-329]] for more details.
+
+## [log|archived] Section 323
+Content for section 323 of type log with status archived.
+
+## [meta|cancelled] Section 324
+Content for section 324 of type meta with status cancelled.
+
+## [config|done] Section 325
+Content for section 325 of type config with status done.
+See [[section-332]] for more details.
+
+## [schema|pending] Section 326
+Content for section 326 of type schema with status pending.
+→ supersedes: section-339.emd
+
+## [model|in-progress] Section 327
+Content for section 327 of type model with status in-progress.
+
+## [agent|blocked] Section 328
+Content for section 328 of type agent with status blocked.
+See [[section-335]] for more details.
+
+## [graph|archived] Section 329
+Content for section 329 of type graph with status archived.
+
+## [prompt|cancelled] Section 330
+Content for section 330 of type prompt with status cancelled.
+
+## [template|done] Section 331
+Content for section 331 of type template with status done.
+→ conflicts: section-344.emd
+See [[section-338]] for more details.
+
+## [human|pending] Section 332
+Content for section 332 of type human with status pending.
+
+## [draw|in-progress] Section 333
+Content for section 333 of type draw with status in-progress.
+
+## [flow|blocked] Section 334
+Content for section 334 of type flow with status blocked.
+See [[section-341]] for more details.
+
+## [kanban|archived] Section 335
+Content for section 335 of type kanban with status archived.
+
+## [example|cancelled] Section 336
+Content for section 336 of type example with status cancelled.
+→ mirrors: section-349.emd
+
+## [task|done] Section 337
+Content for section 337 of type task with status done.
+See [[section-344]] for more details.
+
+## [decision|pending] Section 338
+Content for section 338 of type decision with status pending.
+
+## [spec|in-progress] Section 339
+Content for section 339 of type spec with status in-progress.
+
+## [api|blocked] Section 340
+Content for section 340 of type api with status blocked.
+See [[section-347]] for more details.
+
+## [bug|archived] Section 341
+Content for section 341 of type bug with status archived.
+→ splits: section-354.emd
+
+## [idea|cancelled] Section 342
+Content for section 342 of type idea with status cancelled.
+
+## [verify|done] Section 343
+Content for section 343 of type verify with status done.
+See [[section-350]] for more details.
+
+## [summary|pending] Section 344
+Content for section 344 of type summary with status pending.
+
+## [detail|in-progress] Section 345
+Content for section 345 of type detail with status in-progress.
+
+## [memory|blocked] Section 346
+Content for section 346 of type memory with status blocked.
+→ merges: section-359.emd
+See [[section-353]] for more details.
+
+## [log|archived] Section 347
+Content for section 347 of type log with status archived.
+
+## [meta|cancelled] Section 348
+Content for section 348 of type meta with status cancelled.
+
+## [config|done] Section 349
+Content for section 349 of type config with status done.
+See [[section-356]] for more details.
+
+## [schema|pending] Section 350
+Content for section 350 of type schema with status pending.
+
+## [model|in-progress] Section 351
+Content for section 351 of type model with status in-progress.
+→ generates: section-364.emd
+
+## [agent|blocked] Section 352
+Content for section 352 of type agent with status blocked.
+See [[section-359]] for more details.
+
+## [graph|archived] Section 353
+Content for section 353 of type graph with status archived.
+
+## [prompt|cancelled] Section 354
+Content for section 354 of type prompt with status cancelled.
+
+## [template|done] Section 355
+Content for section 355 of type template with status done.
+See [[section-362]] for more details.
+
+## [human|pending] Section 356
+Content for section 356 of type human with status pending.
+→ consumes: section-369.emd
+
+## [draw|in-progress] Section 357
+Content for section 357 of type draw with status in-progress.
+
+## [flow|blocked] Section 358
+Content for section 358 of type flow with status blocked.
+See [[section-365]] for more details.
+
+## [kanban|archived] Section 359
+Content for section 359 of type kanban with status archived.
+
+## [example|cancelled] Section 360
+Content for section 360 of type example with status cancelled.
+
+## [task|done] Section 361
+Content for section 361 of type task with status done.
+→ depends: section-374.emd
+See [[section-368]] for more details.
+
+## [decision|pending] Section 362
+Content for section 362 of type decision with status pending.
+
+## [spec|in-progress] Section 363
+Content for section 363 of type spec with status in-progress.
+
+## [api|blocked] Section 364
+Content for section 364 of type api with status blocked.
+See [[section-371]] for more details.
+
+## [bug|archived] Section 365
+Content for section 365 of type bug with status archived.
+
+## [idea|cancelled] Section 366
+Content for section 366 of type idea with status cancelled.
+→ blocks: section-379.emd
+
+## [verify|done] Section 367
+Content for section 367 of type verify with status done.
+See [[section-374]] for more details.
+
+## [summary|pending] Section 368
+Content for section 368 of type summary with status pending.
+
+## [detail|in-progress] Section 369
+Content for section 369 of type detail with status in-progress.
+
+## [memory|blocked] Section 370
+Content for section 370 of type memory with status blocked.
+See [[section-377]] for more details.
+
+## [log|archived] Section 371
+Content for section 371 of type log with status archived.
+→ related: section-384.emd
+
+## [meta|cancelled] Section 372
+Content for section 372 of type meta with status cancelled.
+
+## [config|done] Section 373
+Content for section 373 of type config with status done.
+See [[section-380]] for more details.
+
+## [schema|pending] Section 374
+Content for section 374 of type schema with status pending.
+
+## [model|in-progress] Section 375
+Content for section 375 of type model with status in-progress.
+
+## [agent|blocked] Section 376
+Content for section 376 of type agent with status blocked.
+→ requires: section-389.emd
+See [[section-383]] for more details.
+
+## [graph|archived] Section 377
+Content for section 377 of type graph with status archived.
+
+## [prompt|cancelled] Section 378
+Content for section 378 of type prompt with status cancelled.
+
+## [template|done] Section 379
+Content for section 379 of type template with status done.
+See [[section-386]] for more details.
+
+## [human|pending] Section 380
+Content for section 380 of type human with status pending.
+
+## [draw|in-progress] Section 381
+Content for section 381 of type draw with status in-progress.
+→ follows: section-394.emd
+
+## [flow|blocked] Section 382
+Content for section 382 of type flow with status blocked.
+See [[section-389]] for more details.
+
+## [kanban|archived] Section 383
+Content for section 383 of type kanban with status archived.
+
+## [example|cancelled] Section 384
+Content for section 384 of type example with status cancelled.
+
+## [task|done] Section 385
+Content for section 385 of type task with status done.
+See [[section-392]] for more details.
+
+## [decision|pending] Section 386
+Content for section 386 of type decision with status pending.
+→ precedes: section-399.emd
+
+## [spec|in-progress] Section 387
+Content for section 387 of type spec with status in-progress.
+
+## [api|blocked] Section 388
+Content for section 388 of type api with status blocked.
+See [[section-395]] for more details.
+
+## [bug|archived] Section 389
+Content for section 389 of type bug with status archived.
+
+## [idea|cancelled] Section 390
+Content for section 390 of type idea with status cancelled.
+
+## [verify|done] Section 391
+Content for section 391 of type verify with status done.
+→ extends: section-404.emd
+See [[section-398]] for more details.
+
+## [summary|pending] Section 392
+Content for section 392 of type summary with status pending.
+
+## [detail|in-progress] Section 393
+Content for section 393 of type detail with status in-progress.
+
+## [memory|blocked] Section 394
+Content for section 394 of type memory with status blocked.
+See [[section-401]] for more details.
+
+## [log|archived] Section 395
+Content for section 395 of type log with status archived.
+
+## [meta|cancelled] Section 396
+Content for section 396 of type meta with status cancelled.
+→ implements: section-409.emd
+
+## [config|done] Section 397
+Content for section 397 of type config with status done.
+See [[section-404]] for more details.
+
+## [schema|pending] Section 398
+Content for section 398 of type schema with status pending.
+
+## [model|in-progress] Section 399
+Content for section 399 of type model with status in-progress.
+
+## [agent|blocked] Section 400
+Content for section 400 of type agent with status blocked.
+See [[section-407]] for more details.
+
+## [graph|archived] Section 401
+Content for section 401 of type graph with status archived.
+→ defines: section-414.emd
+
+## [prompt|cancelled] Section 402
+Content for section 402 of type prompt with status cancelled.
+
+## [template|done] Section 403
+Content for section 403 of type template with status done.
+See [[section-410]] for more details.
+
+## [human|pending] Section 404
+Content for section 404 of type human with status pending.
+
+## [draw|in-progress] Section 405
+Content for section 405 of type draw with status in-progress.
+
+## [flow|blocked] Section 406
+Content for section 406 of type flow with status blocked.
+→ references: section-419.emd
+See [[section-413]] for more details.
+
+## [kanban|archived] Section 407
+Content for section 407 of type kanban with status archived.
+
+## [example|cancelled] Section 408
+Content for section 408 of type example with status cancelled.
+
+## [task|done] Section 409
+Content for section 409 of type task with status done.
+See [[section-416]] for more details.
+
+## [decision|pending] Section 410
+Content for section 410 of type decision with status pending.
+
+## [spec|in-progress] Section 411
+Content for section 411 of type spec with status in-progress.
+→ contains: section-424.emd
+
+## [api|blocked] Section 412
+Content for section 412 of type api with status blocked.
+See [[section-419]] for more details.
+
+## [bug|archived] Section 413
+Content for section 413 of type bug with status archived.
+
+## [idea|cancelled] Section 414
+Content for section 414 of type idea with status cancelled.
+
+## [verify|done] Section 415
+Content for section 415 of type verify with status done.
+See [[section-422]] for more details.
+
+## [summary|pending] Section 416
+Content for section 416 of type summary with status pending.
+→ supersedes: section-429.emd
+
+## [detail|in-progress] Section 417
+Content for section 417 of type detail with status in-progress.
+
+## [memory|blocked] Section 418
+Content for section 418 of type memory with status blocked.
+See [[section-425]] for more details.
+
+## [log|archived] Section 419
+Content for section 419 of type log with status archived.
+
+## [meta|cancelled] Section 420
+Content for section 420 of type meta with status cancelled.
+
+## [config|done] Section 421
+Content for section 421 of type config with status done.
+→ conflicts: section-434.emd
+See [[section-428]] for more details.
+
+## [schema|pending] Section 422
+Content for section 422 of type schema with status pending.
+
+## [model|in-progress] Section 423
+Content for section 423 of type model with status in-progress.
+
+## [agent|blocked] Section 424
+Content for section 424 of type agent with status blocked.
+See [[section-431]] for more details.
+
+## [graph|archived] Section 425
+Content for section 425 of type graph with status archived.
+
+## [prompt|cancelled] Section 426
+Content for section 426 of type prompt with status cancelled.
+→ mirrors: section-439.emd
+
+## [template|done] Section 427
+Content for section 427 of type template with status done.
+See [[section-434]] for more details.
+
+## [human|pending] Section 428
+Content for section 428 of type human with status pending.
+
+## [draw|in-progress] Section 429
+Content for section 429 of type draw with status in-progress.
+
+## [flow|blocked] Section 430
+Content for section 430 of type flow with status blocked.
+See [[section-437]] for more details.
+
+## [kanban|archived] Section 431
+Content for section 431 of type kanban with status archived.
+→ splits: section-444.emd
+
+## [example|cancelled] Section 432
+Content for section 432 of type example with status cancelled.
+
+## [task|done] Section 433
+Content for section 433 of type task with status done.
+See [[section-440]] for more details.
+
+## [decision|pending] Section 434
+Content for section 434 of type decision with status pending.
+
+## [spec|in-progress] Section 435
+Content for section 435 of type spec with status in-progress.
+
+## [api|blocked] Section 436
+Content for section 436 of type api with status blocked.
+→ merges: section-449.emd
+See [[section-443]] for more details.
+
+## [bug|archived] Section 437
+Content for section 437 of type bug with status archived.
+
+## [idea|cancelled] Section 438
+Content for section 438 of type idea with status cancelled.
+
+## [verify|done] Section 439
+Content for section 439 of type verify with status done.
+See [[section-446]] for more details.
+
+## [summary|pending] Section 440
+Content for section 440 of type summary with status pending.
+
+## [detail|in-progress] Section 441
+Content for section 441 of type detail with status in-progress.
+→ generates: section-454.emd
+
+## [memory|blocked] Section 442
+Content for section 442 of type memory with status blocked.
+See [[section-449]] for more details.
+
+## [log|archived] Section 443
+Content for section 443 of type log with status archived.
+
+## [meta|cancelled] Section 444
+Content for section 444 of type meta with status cancelled.
+
+## [config|done] Section 445
+Content for section 445 of type config with status done.
+See [[section-452]] for more details.
+
+## [schema|pending] Section 446
+Content for section 446 of type schema with status pending.
+→ consumes: section-459.emd
+
+## [model|in-progress] Section 447
+Content for section 447 of type model with status in-progress.
+
+## [agent|blocked] Section 448
+Content for section 448 of type agent with status blocked.
+See [[section-455]] for more details.
+
+## [graph|archived] Section 449
+Content for section 449 of type graph with status archived.
+
+## [prompt|cancelled] Section 450
+Content for section 450 of type prompt with status cancelled.
+
+## [template|done] Section 451
+Content for section 451 of type template with status done.
+→ depends: section-464.emd
+See [[section-458]] for more details.
+
+## [human|pending] Section 452
+Content for section 452 of type human with status pending.
+
+## [draw|in-progress] Section 453
+Content for section 453 of type draw with status in-progress.
+
+## [flow|blocked] Section 454
+Content for section 454 of type flow with status blocked.
+See [[section-461]] for more details.
+
+## [kanban|archived] Section 455
+Content for section 455 of type kanban with status archived.
+
+## [example|cancelled] Section 456
+Content for section 456 of type example with status cancelled.
+→ blocks: section-469.emd
+
+## [task|done] Section 457
+Content for section 457 of type task with status done.
+See [[section-464]] for more details.
+
+## [decision|pending] Section 458
+Content for section 458 of type decision with status pending.
+
+## [spec|in-progress] Section 459
+Content for section 459 of type spec with status in-progress.
+
+## [api|blocked] Section 460
+Content for section 460 of type api with status blocked.
+See [[section-467]] for more details.
+
+## [bug|archived] Section 461
+Content for section 461 of type bug with status archived.
+→ related: section-474.emd
+
+## [idea|cancelled] Section 462
+Content for section 462 of type idea with status cancelled.
+
+## [verify|done] Section 463
+Content for section 463 of type verify with status done.
+See [[section-470]] for more details.
+
+## [summary|pending] Section 464
+Content for section 464 of type summary with status pending.
+
+## [detail|in-progress] Section 465
+Content for section 465 of type detail with status in-progress.
+
+## [memory|blocked] Section 466
+Content for section 466 of type memory with status blocked.
+→ requires: section-479.emd
+See [[section-473]] for more details.
+
+## [log|archived] Section 467
+Content for section 467 of type log with status archived.
+
+## [meta|cancelled] Section 468
+Content for section 468 of type meta with status cancelled.
+
+## [config|done] Section 469
+Content for section 469 of type config with status done.
+See [[section-476]] for more details.
+
+## [schema|pending] Section 470
+Content for section 470 of type schema with status pending.
+
+## [model|in-progress] Section 471
+Content for section 471 of type model with status in-progress.
+→ follows: section-484.emd
+
+## [agent|blocked] Section 472
+Content for section 472 of type agent with status blocked.
+See [[section-479]] for more details.
+
+## [graph|archived] Section 473
+Content for section 473 of type graph with status archived.
+
+## [prompt|cancelled] Section 474
+Content for section 474 of type prompt with status cancelled.
+
+## [template|done] Section 475
+Content for section 475 of type template with status done.
+See [[section-482]] for more details.
+
+## [human|pending] Section 476
+Content for section 476 of type human with status pending.
+→ precedes: section-489.emd
+
+## [draw|in-progress] Section 477
+Content for section 477 of type draw with status in-progress.
+
+## [flow|blocked] Section 478
+Content for section 478 of type flow with status blocked.
+See [[section-485]] for more details.
+
+## [kanban|archived] Section 479
+Content for section 479 of type kanban with status archived.
+
+## [example|cancelled] Section 480
+Content for section 480 of type example with status cancelled.
+
+## [task|done] Section 481
+Content for section 481 of type task with status done.
+→ extends: section-494.emd
+See [[section-488]] for more details.
+
+## [decision|pending] Section 482
+Content for section 482 of type decision with status pending.
+
+## [spec|in-progress] Section 483
+Content for section 483 of type spec with status in-progress.
+
+## [api|blocked] Section 484
+Content for section 484 of type api with status blocked.
+See [[section-491]] for more details.
+
+## [bug|archived] Section 485
+Content for section 485 of type bug with status archived.
+
+## [idea|cancelled] Section 486
+Content for section 486 of type idea with status cancelled.
+→ implements: section-499.emd
+
+## [verify|done] Section 487
+Content for section 487 of type verify with status done.
+See [[section-494]] for more details.
+
+## [summary|pending] Section 488
+Content for section 488 of type summary with status pending.
+
+## [detail|in-progress] Section 489
+Content for section 489 of type detail with status in-progress.
+
+## [memory|blocked] Section 490
+Content for section 490 of type memory with status blocked.
+See [[section-497]] for more details.
+
+## [log|archived] Section 491
+Content for section 491 of type log with status archived.
+→ defines: section-4.emd
+
+## [meta|cancelled] Section 492
+Content for section 492 of type meta with status cancelled.
+
+## [config|done] Section 493
+Content for section 493 of type config with status done.
+See [[section-500]] for more details.
+
+## [schema|pending] Section 494
+Content for section 494 of type schema with status pending.
+
+## [model|in-progress] Section 495
+Content for section 495 of type model with status in-progress.
+
+## [agent|blocked] Section 496
+Content for section 496 of type agent with status blocked.
+→ references: section-9.emd
+See [[section-3]] for more details.
+
+## [graph|archived] Section 497
+Content for section 497 of type graph with status archived.
+
+## [prompt|cancelled] Section 498
+Content for section 498 of type prompt with status cancelled.
+
+## [template|done] Section 499
+Content for section 499 of type template with status done.
+See [[section-6]] for more details.
+
+## [human|pending] Section 500
+Content for section 500 of type human with status pending.

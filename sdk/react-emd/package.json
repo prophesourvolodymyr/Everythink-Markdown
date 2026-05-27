@@ -30,7 +30,7 @@
     }
   },
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --config playground/vite.config.ts",
     "build": "tsc --noEmit && vite build",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -48,6 +48,7 @@
   },
   "devDependencies": {
     "@testing-library/react": "^16.3.2",
+    "@types/node": "^25.9.1",
     "@types/react": "^18.3.0",
     "@types/react-dom": "^18.3.0",
     "jsdom": "^29.1.1",

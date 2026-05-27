@@ -1,0 +1,85 @@
+[meta] Bug Tracker — Project Everthink
+→ references: all-types.emd
+
+## [bug|in-progress] Editor Crashes on Empty Code Block
+**Severity:** High
+**Reported by:** @frontend-team
+**Assigned to:** @core-devs
+→ blocks: tasks.emd#release-v2
+**Reproduction:**
+1. Create an empty code block: ``` ``` (cursor between backticks)
+2. Type any character
+3. Editor crashes with "Cannot read properties of null"
+
+**Expected:** Empty code blocks should render gracefully with a placeholder.
+**Actual:** Editor crashes due to null language tag.
+
+```javascript
+// Problem area: src/live-md/code-block-widget.ts:42
+function getLanguage(content: string): string | null {
+  const match = content.match(/^```(\w+)/);
+  return match[1].toLowerCase(); // Crashes if match is null
+}
+```
+
+## [bug|done] Type Badge Color Missing for 'unknown'
+**Severity:** Low
+**Fixed in:** v0.1.2
+**Description:** When a section has an unrecognized type, the type badge renders with no background color.
+**Fix:** Added fallback `--emd-type-unknown` color token.
+
+## [bug|blocked] Semantic Links Not Resolved Across Files
+**Severity:** Medium
+**Reproduction:**
+1. Open `project.emd` which has `→ depends: tasks.emd`
+2. Link renders but clicking does nothing
+3. No navigation to tasks.emd
+
+**Expected:** Clicking a semantic link should navigate to the referenced file in the workspace.
+**Actual:** Links are rendered as decorations but have no click handler.
+**Blocker:** Waiting for workspace-level link resolution (Phase 4).
+
+## [bug|done] High Memory Usage During Large File Edit
+**Severity:** Medium
+**Fixed in:** v0.1.3
+**Description:** Editing a 500+ section file caused memory to spike to 500MB due to repeated AST parse calls.
+**Fix:** Added debounced reparse (200ms) and AST caching.
+
+## [bug|in-progress] Status Badge Not Updating on Content Change
+**Severity:** Medium
+**Reproduction:**
+1. Create section: `## [task] My Task`
+2. Edit to: `## [task|done] My Task`
+3. Status badge stays as "pending" dot
+4. Only updates on full document reload
+
+**Expected:** Status badge should update immediately when section header is edited.
+**Actual:** Badge only updates on mount, not on content changes.
+
+## [bug|pending] Wiki-Link Highlighting Bleeds into Adjacent Text
+**Severity:** Low
+**Reproduction:**
+1. Type `[[link]]sometext`
+2. The 's' after `]]` is highlighted as part of the link
+**Expected:** Only `[[link]]` should be highlighted.
+
+## [bug|done] Dark Theme Variables Not Applied to Editor
+**Severity:** Medium
+**Fixed in:** v0.1.1
+**Description:** When switching to dark theme, the CodeMirror editor retains light theme colors.
+**Fix:** Added `injectThemeStyles` to EmdEditor mount effect.
+
+## [bug|cancelled] Mobile Safari Text Selection Issue
+**Severity:** Low
+**Status:** Cannot reproduce
+**Description:** User reported text selection not working on iOS Safari.
+After testing on iOS 17.4 and 17.5, unable to reproduce. Closing as unreproducible.
+
+## [bug|in-progress] Progress Bar Widget Not Updating for Large Numbers
+**Severity:** Low
+**Reproduction:**
+1. Write `Progress: 150%` in content
+2. Progress bar renders at full width
+3. Value > 100% should clamp or show a warning
+**Expected:** Either clamp to 100% or render an error state.
+**Actual:** Bar overflows its container.

@@ -1,0 +1,79 @@
+[meta] Link Relations Demo
+This file exercises all 20 EMD link relation types.
+
+## [example|done] Depends Relation
+A link showing a dependency on another file.
+→ depends: all-types.emd
+
+## [example|done] Blocks Relation
+This task blocks progress on another item.
+→ blocks: tasks.emd
+
+## [example|done] Related Relation
+This is related to another document.
+→ related: project.emd
+
+## [example|done] Requires Relation
+This requirement must be fulfilled first.
+→ requires: api-spec.emd
+
+## [example|done] Follows Relation
+This follows another task in sequence.
+→ follows: decisions.emd
+
+## [example|done] Precedes Relation
+This comes before another item.
+→ precedes: bug-tracker.emd
+
+## [example|done] Extends Relation
+This extends an existing specification.
+→ extends: spec.emd
+
+## [example|done] Implements Relation
+The implementation of a specification.
+→ implements: schema.emd
+
+## [example|done] Defines Relation
+This defines an interface or contract.
+→ defines: config.emd
+
+## [example|done] References Relation
+This references external documentation.
+→ references: template.emd
+
+## [example|done] Contains Relation
+This document contains other elements.
+→ contains: nested.emd
+
+## [example|done] Supersedes Relation
+This replaces an older version.
+→ supersedes: log.emd
+
+## [example|done] Conflicts Relation
+This has a known conflict with another item.
+→ conflicts: api.emd
+
+## [example|done] Mirrors Relation
+This mirrors content from another source.
+→ mirrors: memory.emd
+
+## [example|done] Splits Relation
+This splits from an existing item.
+→ splits: summary.emd
+
+## [example|done] Merges Relation
+This merges multiple items together.
+→ merges: detail.emd
+
+## [example|done] Generates Relation
+This produces output consumed elsewhere.
+→ generates: prompt.emd
+
+## [example|done] Consumes Relation
+This consumes output from another source.
+→ consumes: model.emd
+
+## [example|done] Wiki Links
+Testing [[wiki-link]] syntax and [[another-page]] navigation.
+See [[all-types]] and [[project]] for more context.
+![[transclusion]]

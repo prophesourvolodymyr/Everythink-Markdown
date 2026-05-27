@@ -1,0 +1,215 @@
+## [task|done] Complete Login Flow
+This task tracks the full authentication login flow implementation.
+→ depends: api-spec.emd
+→ blocks: decisions.emd
+See [[project]] for overall progress.
+
+### [subtask|in-progress] Password Reset
+Implement forgot password email flow.
+- [ ] Send reset email
+- [x] Validate token
+- [ ] Update password in DB
+
+### [subtask|done] OAuth Integration
+Google and GitHub OAuth providers added.
+- [x] Google OAuth
+- [x] GitHub OAuth
+- [x] Token refresh
+
+## [decision|pending] Database Choice
+We need to decide between PostgreSQL and MongoDB for the primary database.
+→ blocks: schema.emd
+→ references: config.emd
+
+### [subtask|done] Benchmark Existing Solutions
+Ran pgbench against 10M row dataset.
+
+## [spec|done] User Authentication API
+Full specification for the authentication microservice.
+→ defines: api.emd
+→ implements: schema.emd
+
+### [subtask|in-progress] Session Management
+JWT-based session tokens with refresh rotation.
+
+## [api|done] POST /auth/login
+Authenticate user and return JWT token.
+→ consumes: model.emd
+→ generates: log.emd
+
+### [subtask|pending] Rate Limiting
+Add rate limiting middleware for auth endpoints.
+
+## [bug|blocked] Memory Leak in WebSocket Handler
+WebSocket connections not properly cleaned up after disconnect.
+→ requires: verify.emd
+Reproduction: Open 100 concurrent connections, disconnect 50, memory grows unbounded.
+
+### [subtask|in-progress] Add Connection Tracking
+Added connection ID tracking in handler.
+
+## [idea|pending] Offline-First Architecture
+Use CRDTs for offline-first document editing with automatic conflict resolution.
+→ extends: spec.emd
+→ conflicts: api.emd
+See [[crdt-paper]] for the algorithm reference.
+
+## [verify|in-progress] Auth Flow Integration Tests
+End-to-end tests for login, registration, and password reset flows.
+→ follows: task.emd
+Progress: 60%
+
+- [x] Login success
+- [x] Login failure
+- [ ] Registration
+- [ ] Password reset
+- [ ] Token refresh
+
+## [summary|done] Q2 Retrospective
+Q2 was focused on platform stability. Key wins: 99.9% uptime, 40% reduction in p95 latency, new auth service rolled out. Key misses: search v2 delayed, mobile app not shipped.
+
+[Task: 40%] [Decision: 15%] [Bug: 25%] [Idea: 20%]
+
+## [detail|done] Query Optimization Details
+The slow query in UserController.list() was caused by an N+1 issue in the ORM.
+Join fetch was not configured for the roles association.
+FIX: Added `@JoinFetch` annotation to the `roles` field on the User entity.
+Query time went from 2.3s to 45ms.
+
+```sql
+SELECT u.*, r.* FROM users u
+LEFT JOIN user_roles ur ON u.id = ur.user_id
+LEFT JOIN roles r ON ur.role_id = r.id;
+```
+
+## [memory|archived] Initial Architecture Decisions
+When we started this project in January, we chose:
+- Monorepo structure (Nx)
+- PostgreSQL for primary data
+- Redis for caching and sessions
+- AWS ECS for deployment
+- GitHub Actions for CI/CD
+→ precedes: spec.emd
+→ references: decisions.emd
+
+## [log|cancelled] Deploy v2.3.1 Rollback
+2024-06-15 14:30 UTC — Deployed v2.3.1 to production.
+2024-06-15 14:42 UTC — Error rate spiked to 12%.
+2024-06-15 14:45 UTC — Rolled back to v2.3.0.
+Root cause: missing migration for new notification table.
+→ supersedes: bug.emd
+
+## [meta|done] Project Everthink
+Title: Everthink Platform
+Version: 2.3.0
+License: MIT
+Repository: github.com/everthink-co/emd
+
+## [config|done] Production Settings
+```yaml
+server:
+  port: 8080
+  host: 0.0.0.0
+database:
+  url: ${DATABASE_URL}
+  pool_size: 20
+cache:
+  ttl_seconds: 3600
+auth:
+  jwt_expiry: 86400
+```
+
+## [schema|done] User Entity
+```json
+{
+  "type": "object",
+  "properties": {
+    "id": { "type": "string", "format": "uuid" },
+    "email": { "type": "string", "format": "email" },
+    "name": { "type": "string", "minLength": 1 },
+    "role": { "type": "string", "enum": ["admin", "user", "viewer"] },
+    "created_at": { "type": "string", "format": "date-time" }
+  },
+  "required": ["id", "email", "name"]
+}
+```
+
+## [model|done] User Domain Model
+Core user entity with authentication and authorization behavior.
+→ implements: schema.emd
+→ defines: api.emd
+
+## [agent|pending] Code Review Assistant
+AI agent that automatically reviews pull requests for common issues.
+→ consumes: prompt.emd
+→ generates: verify.emd
+
+## [graph|in-progress] Deployment Pipeline
+```mermaid
+graph TD
+  A[Commit] --> B[Build]
+  B --> C{Tests Pass?}
+  C -->|Yes| D[Stage Deploy]
+  C -->|No| E[Notify Dev]
+  D --> F[Integration Tests]
+  F --> G{Pass?}
+  G -->|Yes| H[Prod Deploy]
+  G -->|No| I[Rollback Stage]
+```
+
+## [prompt|done] Code Review System Prompt
+Act as a senior software engineer reviewing code. Focus on:
+1. Security vulnerabilities (SQL injection, XSS, auth bypass)
+2. Performance issues (N+1 queries, missing indexes)
+3. Code style violations (against project ESLint rules)
+4. Test coverage gaps
+→ generates: agent.emd
+
+## [template|done] Feature Spec Template
+Use this template for all new feature specifications.
+→ contains: meta.emd
+
+## [human|pending] UX Review Required
+Design mockups need human review before implementation.
+Figma link: figma.com/file/abc123
+Reviewer: @ux-team
+
+## [draw|in-progress] Architecture Diagram
+```draw
+rect 50 50 200 100 "#4f46e5"
+text 150 100 "API Gateway"
+rect 350 50 200 100 "#0d9488"
+text 450 100 "Auth Service"
+arrow 250 100 350 100
+```
+
+## [flow|pending] User Registration Flow
+```flowchart
+start: Landing Page
+if: Has Account?
+  yes: Login
+  no: Register
+Register: Fill Form -> Validate -> Send Email
+Login: Enter Credentials -> Authenticate -> Dashboard
+```
+
+## [kanban|in-progress] Sprint 14 Board
+```kanban
+| Backlog | In Progress | Review | Done |
+|---------|------------|--------|------|
+| Dark mode | Password reset | OAuth | Login flow |
+| Offline mode | Rate limiting | | CI pipeline |
+| Search v2 | | | |
+```
+
+## [example|done] Basic EMD File
+This is an example showing the basic structure of an EMD file.
+→ references: template.emd
+
+```python
+def hello():
+    print("Hello, EMD!")
+```
+
+### [sub-example|done] Nested Example
+Nested sections demonstrate hierarchy.

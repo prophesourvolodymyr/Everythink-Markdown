@@ -1,0 +1,37 @@
+[meta] Transclusion Examples
+Examples of embedding and transcluding content from other files and sections.
+→ references: links.emd
+
+## [example|done] Simple File Transclusion
+Below is an embedded view of the all-types file:
+![[all-types.emd]]
+
+## [example|done] Section Transclusion
+Below is an embedded view of a specific section from another file:
+![[api-spec.emd#auth-endpoints]]
+
+## [example|done] Inline Transclusion
+This paragraph references a decision inline using transclusion syntax: ![[decisions.emd#choose-typescript]].
+
+## [example|done] Nested Transclusion
+Files that contain transclusions should render them recursively:
+![[project.emd#phase-5]]
+
+## [example|done] Transclusion with Status
+![[tasks.emd#auth-module]]
+
+## [example|done] Self-Referencing Transclusion
+A file can transclude itself (useful for canonical examples):
+![[transclusion.emd#simple-file-transclusion]]
+
+## [example|done] Multi-File Reference
+Multiple transclusions in a single section:
+![[nested.emd#level-4]]
+![[code-blocks.emd#mermaid]]
+
+## [example|done] Broken Transclusion
+Intentionally broken transclusion to test error handling:
+![[nonexistent.emd]]
+![[malformed.emd#nonexistent-section]]
+
+Expected behavior: Broken transclusions should render a placeholder with the file/section name and an error indicator.

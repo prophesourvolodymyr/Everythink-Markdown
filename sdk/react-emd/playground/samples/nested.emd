@@ -1,0 +1,74 @@
+## [task|done] Root Level Task
+This is the top-level task.
+
+### [subtask|in-progress] Level 2 — First Child
+Nested one level deep.
+
+#### [sub-subtask|pending] Level 3 — Grandchild
+Two levels deep. Content at the third level.
+
+##### [sub-sub-subtask|blocked] Level 4 — Great Grandchild
+This is at the deepest supported nesting level (4).
+→ depends: links.emd
+
+#### [sub-subtask|done] Level 3 — Second Grandchild
+Another third-level section.
+
+### [subtask|pending] Level 2 — Second Child
+Back to level 2.
+
+## [decision|done] Level 1 Decision
+A top-level decision section.
+
+### [decision|in-progress] Level 2 Decision
+A nested decision under the parent decision.
+
+#### [decision|pending] Level 3 Decision
+A deeply nested decision with its own status.
+
+##### [decision|blocked] Level 4 Decision
+The deepest nested decision.
+→ blocks: all-types.emd
+
+### [decision|done] Level 2 Alternate
+Another decision at level 2.
+
+## [spec|in-progress] Specification Section — Level 1
+The top-level spec.
+
+### [spec|pending] Level 2 Specification
+A sub-specification.
+
+#### [api|done] Level 3 API Endpoint Within Spec
+An API documented within a specification.
+→ defines: model.emd
+
+##### [schema|done] Level 4 Schema Definition
+A deeply nested schema within an API within a spec.
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "nested": {
+      "type": "object",
+      "properties": {
+        "deep": {
+          "type": "object",
+          "properties": {
+            "very_deep": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+#### [example|done] Example Within Spec
+An example section nested 3 levels deep.
+
+```python
+def deep_nesting_example():
+    print("This demonstrates 4 levels of nesting in EMD")
+```

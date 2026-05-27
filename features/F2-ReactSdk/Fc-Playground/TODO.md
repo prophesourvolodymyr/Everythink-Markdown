@@ -1,7 +1,7 @@
 # Fc-Playground — TODO
 
-<!-- STATUS: not-started -->
+<!-- STATUS: done -->
 
-- [ ] All sub-sub-features complete and tested
-- [ ] Integration with parent SDK verified
-- [ ] DOCS.md updated with learnings
+- [x] All sub-sub-features complete and tested
+- [x] Integration with parent SDK verified
+- [x] DOCS.md updated with learnings
