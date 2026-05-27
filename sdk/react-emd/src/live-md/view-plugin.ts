@@ -6,7 +6,7 @@ import {
   type PluginValue,
   type DecorationSet,
 } from '@codemirror/view';
-import { syntaxTree } from '@codemirror/language';
+import { syntaxTree, foldedRanges } from '@codemirror/language';
 import { type EditorState, type Range } from '@codemirror/state';
 import type { Tree } from '@lezer/common';
 import {
@@ -22,7 +22,7 @@ import { buildTypeBadgeDecorations } from './type-badge';
 import { buildBlockResolverDecorations, setBlockResolverView } from './block-resolver';
 import { buildInlineWidgetDecorations } from './inline-widgets';
 import type { EmdDocument } from '@everthink/emd';
-import { autoFoldMatchingSections } from './smart-folds';
+import { autoFoldMatchingSections, buildFoldWidgetDecorations } from './smart-folds';
 
 const BUILDERS: DecorationBuilder[] = [
   (tree, _ast, config, _state) =>
@@ -39,6 +39,8 @@ const BUILDERS: DecorationBuilder[] = [
     buildBlockResolverDecorations(tree, _ast, config.blockResolver, state),
   (tree, _ast, config, state) =>
     buildInlineWidgetDecorations(tree, _ast, config.inlineWidgets, state),
+  (_tree, _ast, config, state) =>
+    buildFoldWidgetDecorations(_ast, config.smartFolds, state),
 ];
 
 class LiveMdPlugin implements PluginValue {
@@ -68,7 +70,10 @@ class LiveMdPlugin implements PluginValue {
   }
 
   update(update: ViewUpdate): void {
-    if (!update.docChanged) return;
+    const foldChanged =
+      foldedRanges(update.startState) !== foldedRanges(update.state);
+
+    if (!update.docChanged && !foldChanged) return;
 
     if (this.debounceTimer) {
       clearTimeout(this.debounceTimer);

@@ -100,8 +100,10 @@ export {
 
 export {
   emdFoldService,
+  flattenSections,
   autoFoldMatchingSections,
   buildSmartFoldsExtension,
+  buildFoldWidgetDecorations,
   SectionFoldWidget,
 } from './live-md/smart-folds';
 

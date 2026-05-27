@@ -11,8 +11,10 @@ import {
 } from '@codemirror/language';
 import {
   emdFoldService,
+  flattenSections,
   autoFoldMatchingSections,
   buildSmartFoldsExtension,
+  buildFoldWidgetDecorations,
   SectionFoldWidget,
 } from '../smart-folds';
 import {
@@ -531,5 +533,309 @@ describe('buildSmartFoldsExtension', () => {
     const config = makeConfig({ enabled: true });
     const ext = buildSmartFoldsExtension(null, config);
     expect(ext.length).toBe(0);
+  });
+});
+
+function createFoldedState(
+  doc: string,
+  folds: Array<{ from: number; to: number }>
+): EditorState {
+  let state = EditorState.create({
+    doc,
+    extensions: [markdown({ base: markdownLanguage }), foldState],
+  });
+
+  for (const f of folds) {
+    const tr = state.update({
+      effects: foldEffect.of(f),
+    });
+    state = tr.state;
+  }
+
+  return state;
+}
+
+describe('buildFoldWidgetDecorations', () => {
+  it('returns empty array when config is disabled', () => {
+    const doc = '## [task] My Tasks\n\n- [ ] Task 1\n';
+    const section = makeSection({
+      section_type: 'task',
+      title: 'My Tasks',
+      level: 2,
+      source_span: { start: 0, end: doc.length },
+    });
+    const ast = makeAst([section]);
+    const config = makeConfig({ enabled: false });
+    const state = createFoldedState(doc, [{ from: 0, to: doc.length }]);
+
+    const result = buildFoldWidgetDecorations(ast, config, state);
+    expect(result).toEqual([]);
+  });
+
+  it('returns empty array when AST is null', () => {
+    const doc = '## [task] My Tasks\n\n- [ ] Task 1\n';
+    const config = makeConfig({ enabled: true });
+    const state = createFoldedState(doc, [{ from: 0, to: doc.length }]);
+
+    const result = buildFoldWidgetDecorations(null, config, state);
+    expect(result).toEqual([]);
+  });
+
+  it('returns empty array when no sections are folded', () => {
+    const doc = '## [task] My Tasks\n\n- [ ] Task 1\n';
+    const section = makeSection({
+      section_type: 'task',
+      title: 'My Tasks',
+      level: 2,
+      source_span: { start: 0, end: doc.length },
+    });
+    const ast = makeAst([section]);
+    const config = makeConfig({ enabled: true });
+    const state = createFoldedState(doc, []);
+
+    const result = buildFoldWidgetDecorations(ast, config, state);
+    expect(result).toEqual([]);
+  });
+
+  it('produces a Decoration.replace for a folded section', () => {
+    const doc = '## [task] My Tasks\n\n- [ ] Task 1\n';
+    const headingStart = doc.indexOf('##');
+    const section = makeSection({
+      section_type: 'task',
+      title: 'My Tasks',
+      level: 2,
+      source_span: { start: headingStart, end: doc.length },
+    });
+    const ast = makeAst([section]);
+    const config = makeConfig({ enabled: true });
+    const state = createFoldedState(doc, [{ from: headingStart, to: doc.length }]);
+
+    const result = buildFoldWidgetDecorations(ast, config, state);
+    expect(result.length).toBe(1);
+    expect(result[0].from).toBe(headingStart);
+    expect(result[0].to).toBe(doc.length);
+    expect(result[0].value.spec.widget).not.toBeNull();
+  });
+
+  it('decoration widget is a SectionFoldWidget with correct section_type', () => {
+    const doc = '## [spec] API Design\n\nREST API spec.\n';
+    const headingStart = doc.indexOf('##');
+    const section = makeSection({
+      section_type: 'spec',
+      title: 'API Design',
+      level: 2,
+      source_span: { start: headingStart, end: doc.length },
+    });
+    const ast = makeAst([section]);
+    const config = makeConfig({ enabled: true });
+    const state = createFoldedState(doc, [{ from: headingStart, to: doc.length }]);
+
+    const result = buildFoldWidgetDecorations(ast, config, state);
+    expect(result.length).toBe(1);
+    const widget = result[0].value.spec.widget as SectionFoldWidget;
+    expect(widget).toBeInstanceOf(SectionFoldWidget);
+    expect(widget.eq(new SectionFoldWidget('spec', null, 'API Design', config))).toBe(true);
+  });
+
+  it('decoration widget has the correct title', () => {
+    const doc = '## [task] Grocery Shopping\n\nBuy milk and eggs.\n';
+    const headingStart = doc.indexOf('##');
+    const section = makeSection({
+      section_type: 'task',
+      title: 'Grocery Shopping',
+      level: 2,
+      source_span: { start: headingStart, end: doc.length },
+    });
+    const ast = makeAst([section]);
+    const config = makeConfig({ enabled: true });
+    const state = createFoldedState(doc, [{ from: headingStart, to: doc.length }]);
+
+    const result = buildFoldWidgetDecorations(ast, config, state);
+    const widget = result[0].value.spec.widget as SectionFoldWidget;
+    const dom = widget.toDOM();
+    const titleEl = dom.querySelector('.emd-fold-title');
+    expect(titleEl).not.toBeNull();
+    expect(titleEl!.textContent).toBe('Grocery Shopping');
+  });
+
+  it('decoration widget has the correct status', () => {
+    const doc = '## [task|done] Completed\n\nAll done.\n';
+    const headingStart = doc.indexOf('##');
+    const section = makeSection({
+      section_type: 'task',
+      status: 'done',
+      title: 'Completed',
+      level: 2,
+      source_span: { start: headingStart, end: doc.length },
+    });
+    const ast = makeAst([section]);
+    const config = makeConfig({ enabled: true, showStatusDotOnFold: true });
+    const state = createFoldedState(doc, [{ from: headingStart, to: doc.length }]);
+
+    const result = buildFoldWidgetDecorations(ast, config, state);
+    const widget = result[0].value.spec.widget as SectionFoldWidget;
+    const dom = widget.toDOM();
+    const dot = dom.querySelector('.emd-fold-status-dot');
+    expect(dot).not.toBeNull();
+    expect((dot as HTMLElement).title).toBe('done');
+  });
+
+  it('decoration range matches the fold range', () => {
+    const doc = '## [task] Section\n\nContent here.\n';
+    const headingStart = doc.indexOf('##');
+    const section = makeSection({
+      section_type: 'task',
+      title: 'Section',
+      level: 2,
+      source_span: { start: headingStart, end: doc.length },
+    });
+    const ast = makeAst([section]);
+    const config = makeConfig({ enabled: true });
+    const state = createFoldedState(doc, [{ from: headingStart, to: doc.length }]);
+
+    const result = buildFoldWidgetDecorations(ast, config, state);
+    expect(result[0].from).toBe(headingStart);
+    expect(result[0].to).toBe(doc.length);
+  });
+
+  it('folded section produces decoration with correct from/to matching fold range', () => {
+    const doc =
+      '## [task] Task A\n\nContent A.\n\n## [spec] Spec B\n\nContent B.\n';
+    const taskStart = doc.indexOf('## [task]');
+    const specStart = doc.indexOf('## [spec]');
+    const taskSection = makeSection({
+      section_type: 'task',
+      title: 'Task A',
+      level: 2,
+      source_span: { start: taskStart, end: specStart },
+    });
+    const specSection = makeSection({
+      section_type: 'spec',
+      title: 'Spec B',
+      level: 2,
+      source_span: { start: specStart, end: doc.length },
+    });
+    const ast = makeAst([taskSection, specSection]);
+    const config = makeConfig({ enabled: true });
+    const state = createFoldedState(doc, [
+      { from: taskStart, to: specStart },
+    ]);
+
+    const result = buildFoldWidgetDecorations(ast, config, state);
+    expect(result.length).toBe(1);
+    expect(result[0].from).toBe(taskStart);
+    expect(result[0].to).toBe(specStart);
+    expect(result[0].value.spec.widget).toBeInstanceOf(SectionFoldWidget);
+  });
+
+  it('unfolded sections produce no decorations', () => {
+    const doc =
+      '## [task] Task A\n\nContent A.\n\n## [spec] Spec B\n\nContent B.\n';
+    const taskStart = doc.indexOf('## [task]');
+    const specStart = doc.indexOf('## [spec]');
+    const taskSection = makeSection({
+      section_type: 'task',
+      title: 'Task A',
+      level: 2,
+      source_span: { start: taskStart, end: specStart },
+    });
+    const specSection = makeSection({
+      section_type: 'spec',
+      title: 'Spec B',
+      level: 2,
+      source_span: { start: specStart, end: doc.length },
+    });
+    const ast = makeAst([taskSection, specSection]);
+    const config = makeConfig({ enabled: true });
+    // Only fold task A, not spec B
+    const state = createFoldedState(doc, [
+      { from: taskStart, to: specStart },
+    ]);
+
+    const result = buildFoldWidgetDecorations(ast, config, state);
+    expect(result.length).toBe(1);
+    expect(result[0].from).toBe(taskStart);
+  });
+
+  it('Decoration.replace uses block: false', () => {
+    const doc = '## [task] Section\n\nContent.\n';
+    const headingStart = doc.indexOf('##');
+    const section = makeSection({
+      section_type: 'task',
+      title: 'Section',
+      level: 2,
+      source_span: { start: headingStart, end: doc.length },
+    });
+    const ast = makeAst([section]);
+    const config = makeConfig({ enabled: true });
+    const state = createFoldedState(doc, [{ from: headingStart, to: doc.length }]);
+
+    const result = buildFoldWidgetDecorations(ast, config, state);
+    expect(result[0].value.spec.block).toBe(false);
+  });
+
+  it('Decoration.replace uses inclusive: false', () => {
+    const doc = '## [task] Section\n\nContent.\n';
+    const headingStart = doc.indexOf('##');
+    const section = makeSection({
+      section_type: 'task',
+      title: 'Section',
+      level: 2,
+      source_span: { start: headingStart, end: doc.length },
+    });
+    const ast = makeAst([section]);
+    const config = makeConfig({ enabled: true });
+    const state = createFoldedState(doc, [{ from: headingStart, to: doc.length }]);
+
+    const result = buildFoldWidgetDecorations(ast, config, state);
+    expect(result[0].value.spec.inclusive).toBe(false);
+  });
+
+  it('sub-sections that are folded also produce decorations', () => {
+    const doc =
+      '## [task] Parent\n\nParent content.\n\n### [task] Child\n\nChild content.\n';
+    const parentStart = doc.indexOf('## [task] Parent');
+    const childStart = doc.indexOf('### [task] Child');
+    const child = makeSection({
+      section_type: 'task',
+      title: 'Child',
+      level: 3,
+      source_span: { start: childStart, end: doc.length },
+    });
+    const parent = makeSection({
+      section_type: 'task',
+      title: 'Parent',
+      level: 2,
+      source_span: { start: parentStart, end: doc.length },
+      subsections: [child],
+    });
+    const ast = makeAst([parent]);
+    const config = makeConfig({ enabled: true });
+    const state = createFoldedState(doc, [
+      { from: childStart, to: doc.length },
+    ]);
+
+    const result = buildFoldWidgetDecorations(ast, config, state);
+    expect(result.length).toBe(1);
+    expect(result[0].from).toBe(childStart);
+    const widget = result[0].value.spec.widget as SectionFoldWidget;
+    expect(widget.eq(new SectionFoldWidget('task', null, 'Child', config))).toBe(true);
+  });
+
+  it('does not produce decoration when fold range does not match any section start', () => {
+    const doc = '## [task] My Tasks\n\n- [ ] Task 1\n';
+    const section = makeSection({
+      section_type: 'task',
+      title: 'My Tasks',
+      level: 2,
+      source_span: { start: 0, end: doc.length },
+    });
+    const ast = makeAst([section]);
+    const config = makeConfig({ enabled: true });
+    // Fold range starts at position 5, which is not a section start
+    const state = createFoldedState(doc, [{ from: 5, to: doc.length }]);
+
+    const result = buildFoldWidgetDecorations(ast, config, state);
+    expect(result).toEqual([]);
   });
 });

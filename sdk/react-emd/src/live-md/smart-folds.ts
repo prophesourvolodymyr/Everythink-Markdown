@@ -1,5 +1,5 @@
-import type { EditorState, Extension } from '@codemirror/state';
-import { EditorView, WidgetType } from '@codemirror/view';
+import type { EditorState, Extension, Range } from '@codemirror/state';
+import { EditorView, WidgetType, Decoration } from '@codemirror/view';
 import {
   foldService,
   foldEffect,
@@ -10,7 +10,7 @@ import type { EmdDocument, EmdSection } from '@everthink/emd';
 import type { SmartFoldsConfig, AutoFoldRule } from './types';
 import { DEFAULT_TYPE_BADGE_CONFIG, DEFAULT_STATUS_BADGE_CONFIG } from './types';
 
-function flattenSections(sections: EmdSection[]): EmdSection[] {
+export function flattenSections(sections: EmdSection[]): EmdSection[] {
   const result: EmdSection[] = [];
   for (const section of sections) {
     result.push(section);
@@ -189,4 +189,38 @@ export function buildSmartFoldsExtension(
 
   const service = emdFoldService(ast);
   return [foldState, foldService.of(service)];
+}
+
+export function buildFoldWidgetDecorations(
+  ast: EmdDocument | null,
+  config: SmartFoldsConfig,
+  state: EditorState
+): Range<Decoration>[] {
+  if (!config.enabled || !ast) return [];
+
+  const decorations: Range<Decoration>[] = [];
+  const folded = foldedRanges(state);
+  const flatSections = flattenSections(ast.sections);
+
+  folded.between(0, state.doc.length, (from, to) => {
+    const section = flatSections.find((s) => s.source_span.start === from);
+    if (section) {
+      const widget = new SectionFoldWidget(
+        section.section_type,
+        section.status,
+        section.title,
+        config
+      );
+      decorations.push(
+        Decoration.replace({
+          widget,
+          inclusive: false,
+          block: false,
+        }).range(from, to)
+      );
+    }
+    return false;
+  });
+
+  return decorations;
 }

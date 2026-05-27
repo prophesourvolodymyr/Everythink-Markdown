@@ -94,7 +94,9 @@ export {
 } from './theme-engine';
 export {
   emdFoldService,
+  flattenSections,
   autoFoldMatchingSections,
   buildSmartFoldsExtension,
+  buildFoldWidgetDecorations,
   SectionFoldWidget,
 } from './smart-folds';
