@@ -108,4 +108,5 @@ export {
 } from './live-md/smart-folds';
 
 export { EmdEditor } from './editor';
+export type { EmdEditorProps, EmdEditorRef } from './editor';
 export { EmdViewer } from './viewer';

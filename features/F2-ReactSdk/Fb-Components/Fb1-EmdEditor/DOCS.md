@@ -1,19 +1,30 @@
 # Fb1-EmdEditor — Full Editor React Component
 
-The primary component exported by the React SDK. A single `<EmdEditor>` element provides the complete EMD editing experience: a toolbar, a CodeMirror 6 editor surface with live preview decorations, and optional side panels. It is the equivalent of `<textarea>` for plain text, but for EMD — drop it in, pass a file path or initial content, and get a full editor.
+## Implementation Status: DONE (Phase 12)
 
-The component manages the CodeMirror 6 lifecycle: creating the EditorView on mount, destroying it on unmount, and reconfiguring it when props change. It owns the Fa-LiveMd plugin registration, the theme application, and the keyboard shortcut bindings. It coordinates between the React component tree (toolbar, side panels) and the imperative CodeMirror API (getContent, setContent, focus, undo, redo).
+The `EmdEditor` React component at `sdk/react-emd/src/editor.ts` is implemented as a production-ready component wrapping CodeMirror 6 with the `liveMarkdownPlugin()`.
 
-Props include: `file` (path or URL), `initialContent` (raw EMD string, used when file is not provided), `theme` (light, dark, high-contrast, or custom theme name), `readOnly` (disables editing), `plugins` (additional block widget registrations), `aiProvider` (LLM configuration for the AI panel), `toolbar` (boolean or custom toolbar config), `onSave` (callback receiving the current document text), `onChange` (callback on every content change), `onNavigate` (callback when a wiki-link is clicked — the host app handles navigation).
+### Architecture
 
-The imperative ref exposes: `focus()`, `blur()`, `getContent()`, `setContent(source)`, `undo()`, `redo()`, `getSelection()`, `getFocusedSection()`, `insertBlock(type, content)`, `getEditorView()` (escape hatch to the raw CodeMirror instance).
+- **React.forwardRef** component with `useRef` for the container div and EditorView instance
+- **CodeMirror Compartment**-based reconfiguration for `config`, `ast`, and `readOnly` prop changes — avoids destroying/recreating the EditorView
+- **Controlled mode**: when `value` prop changes externally, diff against current editor content and dispatch only if different
+- **Uncontrolled mode**: omit `value` prop, editor manages its own content; `onChange` still fires
+- **Imperative ref** exposes: `focus()`, `blur()`, `getContent()`, `setContent()`, `undo()`, `redo()`, `getEditorView()`
+- **onChange integration**: `EditorView.updateListener` fires `props.onChange(view.state.doc.toString())` on every doc change
+- **onSave integration**: `Mod-s` keymap (Ctrl+S on Windows, Cmd+S on macOS) calls `props.onSave?.()` with `event.preventDefault()`
+- **History**: `@codemirror/commands` `history()` extension enables undo/redo via imperative ref and Ctrl+Z/Cmd+Z
+- **Test strategy**: 7 vitest tests using `@testing-library/react` with jsdom; keyboard shortcut testing uses `HTMLElement.prototype.addEventListener` interception to verify the CM6 key handler invokes `onSave`
 
-File handling: when a `file` prop is provided, the component loads the file through the configured storage provider (OPFS for browser, Tauri IPC for desktop, custom provider for embedded use). The file is parsed via F1-EmdCore WASM on load and re-parsed on save. A dirty indicator appears in the toolbar when unsaved changes exist. Cmd+S triggers save. Auto-save with configurable interval is available.
+### Dependencies Added
 
-Theme handling: the `theme` prop sets the CSS class on the editor container. The theme class propagates through all CSS custom property references in the live preview decorations. Theme changes are instant — no re-parse, no re-render of decorations. The theme preference is persisted to localStorage.
+- `@codemirror/commands` — for `history()`, `undo()`, `redo()`
+- `@testing-library/react` (dev) — for React component tests
 
-Undo/redo: Cmd+Z and Cmd+Shift+Z are handled by CodeMirror's built-in history extension. The undo stack tracks all document changes: text edits, section type changes via badge click, status changes via badge click, checkbox toggles, and AI-applied edits. The undo stack depth is configurable (default 200). Undo/redo toolbar buttons are provided.
+### Verified
 
-Keyboard shortcuts: the component registers standard shortcuts (Cmd+Z undo, Cmd+Shift+Z redo, Cmd+S save, Cmd+F find) and EMD-specific shortcuts (Cmd+Shift+T type picker, Cmd+Shift+S status picker, Cmd+Shift+C toggle AI panel). Shortcuts are configurable through a shortcuts prop or through the settings panel.
+- `npx tsc --noEmit` — clean
+- `npm test` — 207/207 passing
+- `npm run build` — succeeds, 42KB gzipped chunk
 
 The component is about 800-1000 lines of React code managing the lifecycle integration between React's declarative paradigm and CodeMirror's imperative API. Most of the complexity is in the mount/unmount coordination and in ensuring that React state updates don't interfere with CodeMirror's internal state.
