@@ -5,6 +5,7 @@ import type {
   TextStylerConfig,
   LinkRendererConfig,
   StatusBadgeConfig,
+  TypeBadgeConfig,
 } from './live-md/types';
 import {
   DEFAULT_LIVE_MD_CONFIG,
@@ -12,6 +13,7 @@ import {
   DEFAULT_TEXT_STYLER_CONFIG,
   DEFAULT_LINK_RENDERER_CONFIG,
   DEFAULT_STATUS_BADGE_CONFIG,
+  DEFAULT_TYPE_BADGE_CONFIG,
 } from './live-md/types';
 
 export { liveMarkdownPlugin };
@@ -21,6 +23,7 @@ export type {
   TextStylerConfig,
   LinkRendererConfig,
   StatusBadgeConfig,
+  TypeBadgeConfig,
 };
 export {
   DEFAULT_LIVE_MD_CONFIG,
@@ -28,6 +31,7 @@ export {
   DEFAULT_TEXT_STYLER_CONFIG,
   DEFAULT_LINK_RENDERER_CONFIG,
   DEFAULT_STATUS_BADGE_CONFIG,
+  DEFAULT_TYPE_BADGE_CONFIG,
 };
 
 export { EmdEditor } from './editor';

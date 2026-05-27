@@ -21,10 +21,15 @@ export {
   type StatusBadgeConfig,
   DEFAULT_STATUS_BADGE_CONFIG,
 } from './types';
+export {
+  type TypeBadgeConfig,
+  DEFAULT_TYPE_BADGE_CONFIG,
+} from './types';
 export { buildSyntaxHiderDecorations } from './syntax-hider';
 export { buildTextStylerDecorations } from './text-styler';
 export { buildWikiLinkDecorations } from './wiki-link';
 export { buildSemanticLinkDecorations } from './semantic-link';
 export { buildLinkRendererDecorations } from './link-renderer';
 export { buildStatusBadgeDecorations } from './status-badge';
+export { buildTypeBadgeDecorations } from './type-badge';
 export { liveMdViewPlugin, LiveMdPlugin } from './view-plugin';

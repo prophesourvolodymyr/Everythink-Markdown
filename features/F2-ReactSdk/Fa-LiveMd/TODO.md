@@ -2,6 +2,6 @@
 
 <!-- STATUS: in-progress -->
 
-- [~] All sub-sub-features complete and tested (Fa1-SyntaxHider ✅, Fa2-TextStyler ✅, Fa3-LinkRenderer ✅, Fa4-StatusBadge ✅)
+- [~] All sub-sub-features complete and tested (Fa1-SyntaxHider ✅, Fa2-TextStyler ✅, Fa3-LinkRenderer ✅, Fa4-StatusBadge ✅, Fa5-TypeBadge ✅)
 - [ ] Integration with parent SDK verified
 - [ ] DOCS.md updated with learnings

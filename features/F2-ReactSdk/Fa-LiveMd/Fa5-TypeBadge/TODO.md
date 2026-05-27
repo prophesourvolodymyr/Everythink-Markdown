@@ -1,9 +1,9 @@
 # Fa5-TypeBadge — TODO
 
-<!-- STATUS: not-started -->
+<!-- STATUS: done -->
 
-- [ ] Implement core functionality
-- [ ] Handle edge cases and error states
-- [ ] Integrate with parent sub-feature
-- [ ] Write unit tests
-- [ ] Write integration tests
+- [x] Implement core functionality
+- [x] Handle edge cases and error states
+- [x] Integrate with parent sub-feature
+- [x] Write unit tests
+- [x] Write integration tests
