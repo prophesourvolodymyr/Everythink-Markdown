@@ -8,6 +8,36 @@ The viewer is intended for three use cases. First, documentation sites that disp
 
 The viewer is approximately 200 lines of React code plus the reuse of the AST-walking logic from Fa-LiveMd, stripped of the CodeMirror integration layer. It does not load CodeMirror or any of its dependencies, reducing the viewer's bundle size to roughly 60KB gzipped versus the editor's 380KB.
 
-## Status: Not Started
+## Status: Done
 
-Depends on Fb1-EmdEditor's AST-to-React-element pipeline being extracted into a reusable function that both the editor and viewer can call.
+## Implementation Notes
+
+### Props
+- `source: string` — EMD source string to parse and render
+- `theme?: ThemeMode` — 'light', 'dark', or 'high-contrast' (default: 'light')
+- `className?: string` — additional CSS class for the container
+- `onNavigate?: (target: string) => void` — called when a wiki-link is clicked
+
+### Rendering Pipeline
+1. `source` prop is parsed via `@everthink/emd`'s `parse()` on mount and whenever `source` changes
+2. Parse errors are caught and rendered as an error message instead of crashing
+3. `EmdDocument.sections` are walked recursively to build a React element tree
+4. Each section renders: type badge + status badge (if set) + title + content lines + subsections
+5. Content lines are parsed for wiki-links (`[[target]]`) and semantic links (`→ depends: ...`)
+6. Theme CSS variables are injected via `injectThemeStyles()`
+
+### Bundle Size
+- Viewer chunk: 12.34KB (3.58KB gzipped) — well under the 60KB target
+
+### Tests (11 total)
+1. Renders without crashing
+2. Renders empty for empty source
+3. Renders type badge for each section
+4. Renders status badge when status is set
+5. Renders section content lines
+6. Renders nested sections with indentation
+7. Renders wiki-links as clickable spans and calls onNavigate
+8. Applies className prop to container
+9. Applies theme class to container
+10. Renders error message when parse fails
+11. Re-parses when source prop changes

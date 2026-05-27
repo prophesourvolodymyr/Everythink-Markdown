@@ -110,3 +110,4 @@ export {
 export { EmdEditor } from './editor';
 export type { EmdEditorProps, EmdEditorRef } from './editor';
 export { EmdViewer } from './viewer';
+export type { EmdViewerProps } from './viewer';
