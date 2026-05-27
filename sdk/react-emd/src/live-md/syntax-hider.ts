@@ -25,7 +25,8 @@ const SKIP_CONTAINER_TYPES = new Set([
 
 export function buildSyntaxHiderDecorations(
   tree: Tree,
-  config: SyntaxHiderConfig
+  config: SyntaxHiderConfig,
+  _state?: import('@codemirror/state').EditorState
 ): Range<Decoration>[] {
   if (!config.enabled) return [];
 

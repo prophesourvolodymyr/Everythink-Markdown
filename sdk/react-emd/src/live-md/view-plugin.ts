@@ -16,12 +16,16 @@ import {
 } from './types';
 import { buildSyntaxHiderDecorations } from './syntax-hider';
 import { buildTextStylerDecorations } from './text-styler';
+import { buildLinkRendererDecorations } from './link-renderer';
 import type { EmdDocument } from '@everthink/emd';
 
 const BUILDERS: DecorationBuilder[] = [
-  (tree, _ast, config) => buildSyntaxHiderDecorations(tree, config.syntaxHider),
-  (tree, _ast, config) =>
+  (tree, _ast, config, _state) =>
+    buildSyntaxHiderDecorations(tree, config.syntaxHider),
+  (tree, _ast, config, _state) =>
     buildTextStylerDecorations(tree, config.textStyler),
+  (tree, _ast, config, state) =>
+    buildLinkRendererDecorations(tree, _ast, config, state.doc.toString()),
 ];
 
 class LiveMdPlugin implements PluginValue {
@@ -58,7 +62,7 @@ class LiveMdPlugin implements PluginValue {
     const allRanges: Range<Decoration>[] = [];
 
     for (const builder of BUILDERS) {
-      const ranges = builder(tree, this.ast, this.config);
+      const ranges = builder(tree, this.ast, this.config, state);
       allRanges.push(...ranges);
     }
 

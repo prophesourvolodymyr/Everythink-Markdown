@@ -47,15 +47,33 @@ export const DEFAULT_TEXT_STYLER_CONFIG: TextStylerConfig = {
   styleHorizontalRules: true,
 };
 
+export interface LinkRendererConfig {
+  enabled: boolean;
+  styleWikiLinks: boolean;
+  styleSemanticLinks: boolean;
+  wikiLinkColor: string;
+  semanticLinkBadgeBg: string;
+}
+
+export const DEFAULT_LINK_RENDERER_CONFIG: LinkRendererConfig = {
+  enabled: true,
+  styleWikiLinks: true,
+  styleSemanticLinks: true,
+  wikiLinkColor: 'var(--emd-accent)',
+  semanticLinkBadgeBg: 'var(--emd-accent)',
+};
+
 export type DecorationBuilder = (
   tree: Tree,
   ast: EmdDocument | null,
-  config: LiveMdConfig
+  config: LiveMdConfig,
+  state: import('@codemirror/state').EditorState
 ) => Range<Decoration>[];
 
 export interface LiveMdConfig {
   syntaxHider: SyntaxHiderConfig;
   textStyler: TextStylerConfig;
+  linkRenderer: LinkRendererConfig;
   debounceMs: number;
   theme: 'light' | 'dark' | 'high-contrast';
 }
@@ -63,6 +81,7 @@ export interface LiveMdConfig {
 export const DEFAULT_LIVE_MD_CONFIG: LiveMdConfig = {
   syntaxHider: DEFAULT_SYNTAX_HIDER_CONFIG,
   textStyler: DEFAULT_TEXT_STYLER_CONFIG,
+  linkRenderer: DEFAULT_LINK_RENDERER_CONFIG,
   debounceMs: 200,
   theme: 'light',
 };

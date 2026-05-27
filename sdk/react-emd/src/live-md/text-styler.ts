@@ -82,7 +82,8 @@ function styleToInline(style: Record<string, string>): string {
 
 export function buildTextStylerDecorations(
   tree: Tree,
-  config: TextStylerConfig
+  config: TextStylerConfig,
+  _state?: import('@codemirror/state').EditorState
 ): Range<Decoration>[] {
   if (!config.enabled) return [];
 
