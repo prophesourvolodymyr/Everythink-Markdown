@@ -6,6 +6,10 @@ import type {
   LinkRendererConfig,
   StatusBadgeConfig,
   TypeBadgeConfig,
+  BlockResolverConfig,
+  BlockWidget,
+  BlockWidgetContext,
+  BlockWidgetConstructor,
 } from './live-md/types';
 import {
   DEFAULT_LIVE_MD_CONFIG,
@@ -14,7 +18,15 @@ import {
   DEFAULT_LINK_RENDERER_CONFIG,
   DEFAULT_STATUS_BADGE_CONFIG,
   DEFAULT_TYPE_BADGE_CONFIG,
+  DEFAULT_BLOCK_RESOLVER_CONFIG,
 } from './live-md/types';
+import {
+  registerBlockWidget,
+  unregisterBlockWidget,
+  getBlockWidget,
+} from './live-md/block-resolver';
+import { registerBuiltinBlockWidgets } from './live-md/block-widgets';
+import { buildBlockResolverDecorations } from './live-md/block-resolver';
 
 export { liveMarkdownPlugin };
 export type {
@@ -24,6 +36,10 @@ export type {
   LinkRendererConfig,
   StatusBadgeConfig,
   TypeBadgeConfig,
+  BlockResolverConfig,
+  BlockWidget,
+  BlockWidgetContext,
+  BlockWidgetConstructor,
 };
 export {
   DEFAULT_LIVE_MD_CONFIG,
@@ -32,6 +48,12 @@ export {
   DEFAULT_LINK_RENDERER_CONFIG,
   DEFAULT_STATUS_BADGE_CONFIG,
   DEFAULT_TYPE_BADGE_CONFIG,
+  DEFAULT_BLOCK_RESOLVER_CONFIG,
+  registerBlockWidget,
+  unregisterBlockWidget,
+  getBlockWidget,
+  registerBuiltinBlockWidgets,
+  buildBlockResolverDecorations,
 };
 
 export { EmdEditor } from './editor';

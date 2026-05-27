@@ -128,12 +128,48 @@ export const DEFAULT_TYPE_BADGE_CONFIG: TypeBadgeConfig = {
   },
 };
 
+export interface BlockWidgetContext {
+  view: import('@codemirror/view').EditorView;
+  sourceSpan: { from: number; to: number };
+  writeBack: (content: string) => void;
+}
+
+export interface BlockWidget {
+  mount(container: HTMLElement): void;
+  update(content: string): void;
+  destroy(): void;
+  getEstimatedHeight(): number;
+  eq(other: BlockWidget): boolean;
+}
+
+export type BlockWidgetConstructor = (
+  content: string,
+  context: BlockWidgetContext
+) => BlockWidget;
+
+export interface BlockResolverConfig {
+  enabled: boolean;
+  widgets: Record<string, BlockWidgetConstructor>;
+  lazyLoad: boolean;
+  maxBlockSize: number;
+  debounceUpdateMs: number;
+}
+
+export const DEFAULT_BLOCK_RESOLVER_CONFIG: BlockResolverConfig = {
+  enabled: true,
+  widgets: {},
+  lazyLoad: true,
+  maxBlockSize: 10000,
+  debounceUpdateMs: 200,
+};
+
 export interface LiveMdConfig {
   syntaxHider: SyntaxHiderConfig;
   textStyler: TextStylerConfig;
   linkRenderer: LinkRendererConfig;
   statusBadge: StatusBadgeConfig;
   typeBadge: TypeBadgeConfig;
+  blockResolver: BlockResolverConfig;
   debounceMs: number;
   theme: 'light' | 'dark' | 'high-contrast';
 }
@@ -144,6 +180,7 @@ export const DEFAULT_LIVE_MD_CONFIG: LiveMdConfig = {
   linkRenderer: DEFAULT_LINK_RENDERER_CONFIG,
   statusBadge: DEFAULT_STATUS_BADGE_CONFIG,
   typeBadge: DEFAULT_TYPE_BADGE_CONFIG,
+  blockResolver: DEFAULT_BLOCK_RESOLVER_CONFIG,
   debounceMs: 200,
   theme: 'light',
 };

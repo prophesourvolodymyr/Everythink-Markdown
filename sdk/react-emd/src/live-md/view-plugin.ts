@@ -19,6 +19,7 @@ import { buildTextStylerDecorations } from './text-styler';
 import { buildLinkRendererDecorations } from './link-renderer';
 import { buildStatusBadgeDecorations } from './status-badge';
 import { buildTypeBadgeDecorations } from './type-badge';
+import { buildBlockResolverDecorations, setBlockResolverView } from './block-resolver';
 import type { EmdDocument } from '@everthink/emd';
 
 const BUILDERS: DecorationBuilder[] = [
@@ -32,6 +33,8 @@ const BUILDERS: DecorationBuilder[] = [
     buildStatusBadgeDecorations(tree, _ast, config.statusBadge),
   (tree, _ast, config, _state) =>
     buildTypeBadgeDecorations(tree, _ast, config.typeBadge),
+  (tree, _ast, config, state) =>
+    buildBlockResolverDecorations(tree, _ast, config.blockResolver, state),
 ];
 
 class LiveMdPlugin implements PluginValue {
@@ -66,6 +69,8 @@ class LiveMdPlugin implements PluginValue {
   rebuildDecorations(state: EditorState): void {
     const tree: Tree = syntaxTree(state);
     const allRanges: Range<Decoration>[] = [];
+
+    setBlockResolverView(this.view);
 
     for (const builder of BUILDERS) {
       const ranges = builder(tree, this.ast, this.config, state);
