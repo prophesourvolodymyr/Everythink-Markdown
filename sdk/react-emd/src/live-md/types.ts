@@ -70,10 +70,31 @@ export type DecorationBuilder = (
   state: import('@codemirror/state').EditorState
 ) => Range<Decoration>[];
 
+export interface StatusBadgeConfig {
+  enabled: boolean;
+  mode: 'dot' | 'pill';
+  colors: Record<string, string>;
+}
+
+export const DEFAULT_STATUS_BADGE_CONFIG: StatusBadgeConfig = {
+  enabled: true,
+  mode: 'dot',
+  colors: {
+    done: '#22c55e',
+    pending: '#9ca3af',
+    'in-progress': '#f59e0b',
+    blocked: '#ef4444',
+    archived: '#6b7280',
+    cancelled: '#6b7280',
+    unknown: '#9ca3af',
+  },
+};
+
 export interface LiveMdConfig {
   syntaxHider: SyntaxHiderConfig;
   textStyler: TextStylerConfig;
   linkRenderer: LinkRendererConfig;
+  statusBadge: StatusBadgeConfig;
   debounceMs: number;
   theme: 'light' | 'dark' | 'high-contrast';
 }
@@ -82,6 +103,7 @@ export const DEFAULT_LIVE_MD_CONFIG: LiveMdConfig = {
   syntaxHider: DEFAULT_SYNTAX_HIDER_CONFIG,
   textStyler: DEFAULT_TEXT_STYLER_CONFIG,
   linkRenderer: DEFAULT_LINK_RENDERER_CONFIG,
+  statusBadge: DEFAULT_STATUS_BADGE_CONFIG,
   debounceMs: 200,
   theme: 'light',
 };

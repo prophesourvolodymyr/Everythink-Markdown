@@ -17,6 +17,7 @@ import {
 import { buildSyntaxHiderDecorations } from './syntax-hider';
 import { buildTextStylerDecorations } from './text-styler';
 import { buildLinkRendererDecorations } from './link-renderer';
+import { buildStatusBadgeDecorations } from './status-badge';
 import type { EmdDocument } from '@everthink/emd';
 
 const BUILDERS: DecorationBuilder[] = [
@@ -26,6 +27,8 @@ const BUILDERS: DecorationBuilder[] = [
     buildTextStylerDecorations(tree, config.textStyler),
   (tree, _ast, config, state) =>
     buildLinkRendererDecorations(tree, _ast, config, state.doc.toString()),
+  (tree, _ast, config, _state) =>
+    buildStatusBadgeDecorations(tree, _ast, config.statusBadge),
 ];
 
 class LiveMdPlugin implements PluginValue {
