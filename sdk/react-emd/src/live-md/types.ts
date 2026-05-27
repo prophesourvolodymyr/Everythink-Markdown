@@ -189,6 +189,28 @@ export interface ThemeEngineConfig {
   customThemes: Record<string, ThemeDefinition>;
 }
 
+export type AutoFoldRule = {
+  type?: string;
+  status?: string;
+  level?: number;
+};
+
+export interface SmartFoldsConfig {
+  enabled: boolean;
+  autoFoldRules: AutoFoldRule[];
+  showTypeBadgeOnFold: boolean;
+  showStatusDotOnFold: boolean;
+  foldPlaceholderMaxTitle: number;
+}
+
+export const DEFAULT_SMART_FOLDS_CONFIG: SmartFoldsConfig = {
+  enabled: true,
+  autoFoldRules: [],
+  showTypeBadgeOnFold: true,
+  showStatusDotOnFold: true,
+  foldPlaceholderMaxTitle: 40,
+};
+
 export interface LiveMdConfig {
   syntaxHider: SyntaxHiderConfig;
   textStyler: TextStylerConfig;
@@ -197,6 +219,7 @@ export interface LiveMdConfig {
   typeBadge: TypeBadgeConfig;
   blockResolver: BlockResolverConfig;
   inlineWidgets: InlineWidgetsConfig;
+  smartFolds: SmartFoldsConfig;
   debounceMs: number;
   theme: ThemeMode;
 }
@@ -209,6 +232,7 @@ export const DEFAULT_LIVE_MD_CONFIG: LiveMdConfig = {
   typeBadge: DEFAULT_TYPE_BADGE_CONFIG,
   blockResolver: DEFAULT_BLOCK_RESOLVER_CONFIG,
   inlineWidgets: DEFAULT_INLINE_WIDGETS_CONFIG,
+  smartFolds: DEFAULT_SMART_FOLDS_CONFIG,
   debounceMs: 200,
   theme: 'light',
 };

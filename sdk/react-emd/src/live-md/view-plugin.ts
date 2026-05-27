@@ -22,6 +22,7 @@ import { buildTypeBadgeDecorations } from './type-badge';
 import { buildBlockResolverDecorations, setBlockResolverView } from './block-resolver';
 import { buildInlineWidgetDecorations } from './inline-widgets';
 import type { EmdDocument } from '@everthink/emd';
+import { autoFoldMatchingSections } from './smart-folds';
 
 const BUILDERS: DecorationBuilder[] = [
   (tree, _ast, config, _state) =>
@@ -54,6 +55,16 @@ class LiveMdPlugin implements PluginValue {
     this.config = { ...DEFAULT_LIVE_MD_CONFIG, ...config };
     this.ast = ast;
     this.rebuildDecorations(view.state);
+
+    if (this.config.smartFolds.enabled && this.ast) {
+      setTimeout(() => {
+        autoFoldMatchingSections(
+          this.view,
+          this.ast,
+          this.config.smartFolds.autoFoldRules
+        );
+      }, 0);
+    }
   }
 
   update(update: ViewUpdate): void {

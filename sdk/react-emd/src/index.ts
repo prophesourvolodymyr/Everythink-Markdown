@@ -8,6 +8,8 @@ import type {
   TypeBadgeConfig,
   BlockResolverConfig,
   InlineWidgetsConfig,
+  SmartFoldsConfig,
+  AutoFoldRule,
   ThemeMode,
   ThemeDefinition,
   ThemeEngineConfig,
@@ -24,6 +26,7 @@ import {
   DEFAULT_TYPE_BADGE_CONFIG,
   DEFAULT_BLOCK_RESOLVER_CONFIG,
   DEFAULT_INLINE_WIDGETS_CONFIG,
+  DEFAULT_SMART_FOLDS_CONFIG,
 } from './live-md/types';
 import {
   registerBlockWidget,
@@ -57,6 +60,8 @@ export type {
   TypeBadgeConfig,
   BlockResolverConfig,
   InlineWidgetsConfig,
+  SmartFoldsConfig,
+  AutoFoldRule,
   ThemeMode,
   ThemeDefinition,
   ThemeEngineConfig,
@@ -73,6 +78,7 @@ export {
   DEFAULT_TYPE_BADGE_CONFIG,
   DEFAULT_BLOCK_RESOLVER_CONFIG,
   DEFAULT_INLINE_WIDGETS_CONFIG,
+  DEFAULT_SMART_FOLDS_CONFIG,
   registerBlockWidget,
   unregisterBlockWidget,
   getBlockWidget,
@@ -91,6 +97,13 @@ export {
   DARK_THEME,
   HIGH_CONTRAST_THEME,
 };
+
+export {
+  emdFoldService,
+  autoFoldMatchingSections,
+  buildSmartFoldsExtension,
+  SectionFoldWidget,
+} from './live-md/smart-folds';
 
 export { EmdEditor } from './editor';
 export { EmdViewer } from './viewer';

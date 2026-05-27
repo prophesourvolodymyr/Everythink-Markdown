@@ -1,13 +1,28 @@
 import type { Extension } from '@codemirror/state';
 import { liveMdViewPlugin } from './view-plugin';
 import type { LiveMdConfig } from './types';
+import { DEFAULT_LIVE_MD_CONFIG } from './types';
 import type { EmdDocument } from '@everthink/emd';
+import { buildSmartFoldsExtension } from './smart-folds';
 
 export function liveMarkdownPlugin(
   config?: Partial<LiveMdConfig>,
   ast?: EmdDocument | null
 ): Extension[] {
-  return [liveMdViewPlugin(config, ast)];
+  const mergedConfig = { ...DEFAULT_LIVE_MD_CONFIG, ...config };
+  const resolvedAst = ast ?? null;
+
+  const extensions: Extension[] = [
+    liveMdViewPlugin(config, resolvedAst),
+  ];
+
+  if (mergedConfig.smartFolds.enabled && resolvedAst) {
+    extensions.push(
+      ...buildSmartFoldsExtension(resolvedAst, mergedConfig.smartFolds)
+    );
+  }
+
+  return extensions;
 }
 
 export { type LiveMdConfig, DEFAULT_LIVE_MD_CONFIG } from './types';
@@ -58,6 +73,11 @@ export {
   type ThemeMode,
   type ThemeDefinition,
   type ThemeEngineConfig,
+  type SmartFoldsConfig,
+  type AutoFoldRule,
+} from './types';
+export {
+  DEFAULT_SMART_FOLDS_CONFIG,
 } from './types';
 export {
   registerTheme,
@@ -72,3 +92,9 @@ export {
   DARK_THEME,
   HIGH_CONTRAST_THEME,
 } from './theme-engine';
+export {
+  emdFoldService,
+  autoFoldMatchingSections,
+  buildSmartFoldsExtension,
+  SectionFoldWidget,
+} from './smart-folds';
