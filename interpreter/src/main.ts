@@ -8,8 +8,13 @@ import './blocks/image-block';
 import './blocks/table-block';
 import './blocks/diff-block';
 import './blocks/task-block';
+import './blocks/media-block';
+import './blocks/canvas-block';
+import './blocks/flowchart-block';
+import './blocks/kanban-block';
 import './components/emd-editor';
 import './components/emd-workspace';
+import './components/emd-settings';
 import { EmdWorkspace } from './components/emd-workspace';
 import { MemoryStorage, BrowserStorage } from './storage/browser-storage';
 
@@ -105,11 +110,34 @@ async function initializeApp(): Promise<void> {
     '| Python | Interpreted | Slow | Very High |',
     '| Go | Compiled | Fast | High |',
     '',
+    '## [detail] Canvas Drawing Demo',
+    '',
+    '```draw',
+    JSON.stringify({
+      version: 1,
+      width: 800,
+      height: 500,
+      commands: [
+        { type: 'rect', x: 50, y: 50, width: 200, height: 100, strokeColor: '#3b82f6', fillColor: '#dbeafe', lineWidth: 3, opacity: 0.9 },
+        { type: 'circle', x: 300, y: 50, radius: 60, strokeColor: '#22c55e', fillColor: '#dcfce7', lineWidth: 3 },
+        { type: 'freehand', points: [{ x: 400, y: 150 }, { x: 450, y: 120 }, { x: 500, y: 140 }, { x: 550, y: 100 }, { x: 600, y: 130 }], strokeColor: '#ef4444', lineWidth: 4 },
+        { type: 'arrow', x: 80, y: 200, x2: 350, y2: 200, strokeColor: '#f59e0b', lineWidth: 3 },
+        { type: 'text', x: 400, y: 220, text: 'Hello EMD!', strokeColor: '#8b5cf6', fontSize: 32 },
+        { type: 'line', x: 20, y: 300, x2: 780, y2: 300, strokeColor: '#6b7280', lineWidth: 2, opacity: 0.5 },
+      ],
+      zoom: 1,
+      panX: 0,
+      panY: 0,
+      gridEnabled: false,
+      gridSize: 20,
+    }),
+    '```',
+    '',
     '## [task] Next Steps',
     '',
-    '- [ ] Add drag-to-reorder for blocks',
+    '- [x] Build canvas block (drawing + zoom + export)',
     '- [ ] Implement AI chat panel',
-    '- [ ] Build canvas block (Apple Pencil support)',
+    '- [ ] Build flowchart + kanban blocks',
     '',
     '## [meta] Project Info',
     '',
@@ -148,8 +176,12 @@ async function initializeApp(): Promise<void> {
     }
   });
 
+  document.getElementById('btn-settings')?.addEventListener('click', () => {
+    workspace.showSettings();
+  });
+
   console.log('EMD Interpreter initialized');
-  console.log('- 9 block plugins loaded: markdown, code, mermaid, katex, html, image, table, diff, task');
+  console.log('- 13 block plugins loaded: markdown, code, mermaid, katex, html, image, table, diff, task, media, canvas, flowchart, kanban');
   console.log('- Storage: Browser (OPFS) / Memory');
 }
 

@@ -1,0 +1,17 @@
+# Fd-AiPanel — AI Chat Sidebar
+
+The AI assistant panel that integrates F1-EmdCore's agent runtime into the editor. Provides a chat interface where the user converses with an LLM that has full read/write access to the current document and its linked files. The AI can suggest edits, generate content, answer questions about the document, and run agent graphs defined in [agent] and [graph] sections.
+
+## Sub-sub-features
+
+**Fd1-ChatUi** — the React component rendering the chat interface. Message list with user messages aligned right and AI messages aligned left with model badge. Input textarea at the bottom with auto-resize. Model selector dropdown (GPT-4o, Claude Sonnet 4, etc.) in the header. Token counter displaying current usage versus budget. Cancel button during generation. Loading indicator (three-dot pulse) while waiting for response. Code blocks in AI messages get syntax highlighting and an [Apply] button. The panel is toggleable via toolbar button or Cmd+Shift+C keyboard shortcut and appears as a resizable right sidebar (default 400px width).
+
+**Fd2-ContextBridge** — gathers and formats document context for the LLM prompt. On each message send, it collects the current file's full text, the focused section's type/status/title/content, summaries of linked files (via F1-ContextLoader), and a list of available tools. Formats this into a structured system prompt that tells the LLM what document it is looking at and what operations it can perform. Respects the token budget configured in settings (default 8,192 tokens) by trimming less relevant context when the gathered content exceeds the budget. The context is updated before each message, so file changes made between messages are reflected in the next prompt.
+
+**Fd3-Streaming** — handles the streaming token-by-token response from the LLM provider. Opens a streaming connection via F1-GraphExecutor's streaming API through the WASM bridge. Renders each token as it arrives, progressively building the AI message in the chat. Supports cancellation: clicking the stop button closes the stream and keeps any partially received content. Handles connection errors with retry logic (up to 3 retries with exponential backoff). Handles rate limiting with a user-visible "rate limited, retrying in N seconds" message. Renders markdown in the streaming response progressively — headings, bold, italic, code blocks appear as soon as their complete syntax is received rather than waiting for the full response.
+
+**Fd4-ApplyEdit** — the edit application system. When the AI proposes a code change in a fenced code block within a chat message, an [Apply] button appears. Clicking it extracts the proposed text, computes a diff against the current document, and shows a preview panel with the changes highlighted (green additions, red deletions). The preview includes the section context — which section the edit targets, and what the surrounding content looks like. The user can edit the proposal in the preview before applying. On confirmation, the edit is applied via a CodeMirror transaction and the document re-parses. If the edit introduces validation errors (broken links, status inconsistencies), a warning banner appears with the option to apply anyway or cancel. Applied edits are undoable via Cmd+Z.
+
+## Status: Not Started
+
+Depends on Fd2-ContextBridge and Fd3-Streaming which depend on F1-EmdCore's WASM bridge being stable. The AI panel is built after Fa-LiveMd and Fb-Components because it renders inside the EmdEditor component tree.

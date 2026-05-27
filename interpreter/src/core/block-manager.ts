@@ -39,6 +39,17 @@ async function loadEmdWasm(): Promise<EmdModuleType> {
   }
 }
 
+interface DragState {
+  blockId: BlockId;
+  ghost: HTMLElement;
+  indicator: HTMLElement;
+  startX: number;
+  startY: number;
+  offsetX: number;
+  offsetY: number;
+  scrollZone: ReturnType<typeof setInterval> | null;
+}
+
 export class BlockManager {
   readonly blocks = new Map<BlockId, Block>();
   readonly rootBlockIds: BlockId[] = [];
@@ -52,6 +63,8 @@ export class BlockManager {
   private debounceTimer: ReturnType<typeof setTimeout> | null = null;
   private mountRoot: HTMLElement | null = null;
   private storage: StorageProvider;
+  private dragState: DragState | null = null;
+  private lastDropTarget: { parentId: BlockId | null; index: number } | null = null;
 
   constructor(config: EmdEditorConfig) {
     this.config = {
@@ -672,6 +685,16 @@ export class BlockManager {
     element.setAttribute('data-plugin-id', block.plugin_id);
     element.classList.add('emd-block');
     element.style.paddingLeft = `${block.depth * 24}px`;
+    element.style.position = 'relative';
+
+    const dragHandle = document.createElement('span');
+    dragHandle.className = 'emd-drag-handle';
+    dragHandle.textContent = '⠿';
+    dragHandle.setAttribute('draggable', 'false');
+    element.appendChild(dragHandle);
+
+    dragHandle.addEventListener('mousedown', (e) => this.onDragStart(e, block.id));
+    dragHandle.addEventListener('touchstart', (e) => this.onDragStart(e, block.id), { passive: false });
 
     element.addEventListener('click', (e) => {
       if (e.metaKey || e.ctrlKey) {
@@ -744,6 +767,217 @@ export class BlockManager {
     container.className = 'emd-block-children';
     parent.element?.appendChild(container);
     return container;
+  }
+
+  private isDragHandle(target: HTMLElement): boolean {
+    return target.classList.contains('emd-drag-handle');
+  }
+
+  private onDragStart(e: MouseEvent | TouchEvent, blockId: BlockId): void {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const block = this.blocks.get(blockId);
+    if (!block?.element) return;
+
+    const clientX = 'touches' in e ? e.touches[0]!.clientX : e.clientX;
+    const clientY = 'touches' in e ? e.touches[0]!.clientY : e.clientY;
+
+    const ghost = block.element.cloneNode(true) as HTMLElement;
+    ghost.classList.add('emd-drag-ghost');
+    ghost.style.position = 'fixed';
+    ghost.style.pointerEvents = 'none';
+    ghost.style.opacity = '0.85';
+    ghost.style.zIndex = '10000';
+    ghost.style.width = `${block.element.offsetWidth}px`;
+    ghost.style.left = `${clientX - 20}px`;
+    ghost.style.top = `${clientY - 10}px`;
+    document.body.appendChild(ghost);
+
+    const indicator = document.createElement('div');
+    indicator.className = 'emd-drag-indicator';
+    indicator.style.display = 'none';
+    this.mountRoot?.appendChild(indicator);
+
+    const rect = block.element.getBoundingClientRect();
+
+    this.dragState = {
+      blockId,
+      ghost,
+      indicator,
+      startX: clientX,
+      startY: clientY,
+      offsetX: clientX - rect.left,
+      offsetY: clientY - rect.top,
+      scrollZone: null,
+    };
+
+    document.body.style.userSelect = 'none';
+    document.body.style.cursor = 'grabbing';
+
+    document.addEventListener('mousemove', this.onDragMove);
+    document.addEventListener('mouseup', this.onDragEnd);
+    document.addEventListener('touchmove', this.onDragMove, { passive: false });
+    document.addEventListener('touchend', this.onDragEnd);
+  }
+
+  private onDragMove = (e: MouseEvent | TouchEvent): void => {
+    if (!this.dragState || !this.mountRoot) return;
+
+    e.preventDefault();
+
+    const clientX = 'touches' in e ? (e.touches[0]?.clientX ?? 0) : e.clientX;
+    const clientY = 'touches' in e ? (e.touches[0]?.clientY ?? 0) : e.clientY;
+
+    this.dragState.ghost.style.left = `${clientX - this.dragState.offsetX}px`;
+    this.dragState.ghost.style.top = `${clientY - this.dragState.offsetY}px`;
+
+    const target = this.findDropTarget(clientX, clientY);
+    this.showDropIndicator(target);
+
+    this.autoScrollOnDrag(clientY);
+  };
+
+  private onDragEnd = (): void => {
+    if (!this.dragState) return;
+
+    document.removeEventListener('mousemove', this.onDragMove);
+    document.removeEventListener('mouseup', this.onDragEnd);
+    document.removeEventListener('touchmove', this.onDragMove);
+    document.removeEventListener('touchend', this.onDragEnd);
+
+    if (this.dragState.scrollZone) {
+      clearInterval(this.dragState.scrollZone);
+    }
+
+    this.dragState.ghost.remove();
+    this.dragState.indicator.remove();
+    document.body.style.userSelect = '';
+    document.body.style.cursor = '';
+
+    if (this.lastDropTarget) {
+      this.moveBlock(
+        this.dragState.blockId,
+        this.lastDropTarget.parentId,
+        this.lastDropTarget.index,
+      );
+    }
+
+    this.dragState = null;
+    this.lastDropTarget = null;
+  };
+
+  private findDropTarget(
+    clientX: number,
+    clientY: number,
+  ): { parentId: BlockId | null; index: number; element: HTMLElement } | null {
+    const allIds = this.getFlattenedBlockIds();
+    let best: { parentId: BlockId | null; index: number; element: HTMLElement } | null = null;
+
+    for (const blockId of allIds) {
+      const block = this.blocks.get(blockId);
+      if (!block?.element || blockId === this.dragState?.blockId) continue;
+
+      const rect = block.element.getBoundingClientRect();
+      const midY = rect.top + rect.height / 2;
+
+      if (clientX >= rect.left && clientX <= rect.right &&
+          clientY >= rect.top && clientY <= rect.bottom) {
+        if (clientY < midY) {
+          const siblings = block.parent_id
+            ? this.blocks.get(block.parent_id)?.child_ids ?? []
+            : this.rootBlockIds;
+          const idx = siblings.indexOf(blockId);
+          return { parentId: block.parent_id, index: idx >= 0 ? idx : 0, element: block.element };
+        }
+      }
+    }
+
+    if (allIds.length > 0 && this.mountRoot) {
+      const lastBlock = this.blocks.get(allIds[allIds.length - 1]!);
+      if (lastBlock?.element) {
+        const lastRect = lastBlock.element.getBoundingClientRect();
+        if (clientY > lastRect.bottom) {
+          return { parentId: null, index: this.rootBlockIds.length, element: this.mountRoot };
+        }
+      }
+    }
+
+    return best;
+  }
+
+  private showDropIndicator(
+    target: { parentId: BlockId | null; index: number; element: HTMLElement } | null,
+  ): void {
+    if (!this.dragState) return;
+
+    if (!target) {
+      this.dragState.indicator.style.display = 'none';
+      this.lastDropTarget = null;
+      return;
+    }
+
+    this.lastDropTarget = { parentId: target.parentId, index: target.index };
+
+    const refBlock = this.blocks.get(
+      target.parentId
+        ? this.blocks.get(target.parentId)?.child_ids?.[target.index] ?? ''
+        : this.rootBlockIds[target.index] ?? '',
+    );
+
+    const indicator = this.dragState.indicator;
+    indicator.style.display = 'block';
+    indicator.style.position = 'absolute';
+    indicator.style.height = '3px';
+    indicator.style.backgroundColor = 'var(--emd-accent, #3b82f6)';
+    indicator.style.borderRadius = '2px';
+    indicator.style.zIndex = '9999';
+    indicator.style.pointerEvents = 'none';
+
+    if (refBlock?.element) {
+      const refRect = refBlock.element.getBoundingClientRect();
+      const containerRect = this.mountRoot!.getBoundingClientRect();
+      indicator.style.top = `${refRect.top - containerRect.top - 2}px`;
+      indicator.style.left = `${refRect.left - containerRect.left}px`;
+      indicator.style.width = `${refRect.width}px`;
+    } else if (target.parentId) {
+      const parent = this.blocks.get(target.parentId);
+      if (parent?.element) {
+        const pr = parent.element.getBoundingClientRect();
+        const cr = this.mountRoot!.getBoundingClientRect();
+        indicator.style.top = `${pr.bottom - cr.top}px`;
+        indicator.style.left = `${pr.left - cr.left + 24}px`;
+        indicator.style.width = `${pr.width - 24}px`;
+      }
+    } else {
+      const cr = this.mountRoot!.getBoundingClientRect();
+      indicator.style.top = `${cr.height - 2}px`;
+      indicator.style.left = '0';
+      indicator.style.width = `${cr.width}px`;
+    }
+  }
+
+  private autoScrollOnDrag(clientY: number): void {
+    if (!this.mountRoot) return;
+
+    const rect = this.mountRoot.getBoundingClientRect();
+    const scrollThreshold = 60;
+    const scrollSpeed = 10;
+
+    if (this.dragState?.scrollZone) {
+      clearInterval(this.dragState.scrollZone);
+      this.dragState.scrollZone = null;
+    }
+
+    if (clientY < rect.top + scrollThreshold) {
+      this.dragState!.scrollZone = setInterval(() => {
+        this.mountRoot!.scrollTop -= scrollSpeed;
+      }, 16);
+    } else if (clientY > rect.bottom - scrollThreshold) {
+      this.dragState!.scrollZone = setInterval(() => {
+        this.mountRoot!.scrollTop += scrollSpeed;
+      }, 16);
+    }
   }
 
   private emit(event: BlockChangeEvent): void {

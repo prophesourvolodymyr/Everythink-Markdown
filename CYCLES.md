@@ -1,6 +1,6 @@
 # CYCLES.md
 
-<!-- STATUS: Phase 1 — Foundation — COMPLETE --><!-- STATUS: Phase 2 — Tooling — COMPLETE -->
+<!-- STATUS: Phase 1 — Foundation — COMPLETE --><!-- STATUS: Phase 2 — Tooling — COMPLETE --><!-- STATUS: Phase 3 — Interpreter Core — COMPLETE -->
 <!-- LAST_UPDATED: 2026-04-30 -->
 
 ## Status Key
@@ -13,6 +13,7 @@
 
 ## Phase 1 — Foundation  [x] Done
 > Goal: EMD parser, validator, WASM — usable from TypeScript
+**Features:** F1-Fa (Parser), F1-Fb (Validator), F1-Fc (WasmTarget)
 
 | # | Task | Status |
 |---|------|--------|
@@ -42,6 +43,7 @@
 
 ## Phase 2 — Tooling  [x] Done
 > Goal: CLI, LSP, context loader, agent runtime
+**Features:** F1-Fd (CliToolchain), F1-Fe (ContextLoader), F1-Ff (LspServer), F1-Fg (GraphExecutor)
 
 | # | Task | Status |
 |---|------|--------|
@@ -77,9 +79,10 @@
 
 ---
 
-## Phase 3 — Interpreter Core [~] In Progress
+## Phase 3 — Interpreter Core [x] Done
 > Goal: Block engine + core blocks + workspace shell — a working editor
-> Started: 2026-05-05
+> Started: 2026-05-05 — Completed: 2026-05-20
+**Features:** F2-Fa (BlockEngine), F2-Fb (CoreBlocks), F2-Fc (Workspace)
 
 | # | Task | Status |
 |---|------|--------|
@@ -89,7 +92,7 @@
 | 4 | Block lifecycle: mount, update, destroy | [x] |
 | 5 | Plugin API: registerBlockPlugin(), unregisterBlockPlugin() | [x] |
 | 6 | Core blocks registered as plugins (eat own API) | [x] |
-| 7 | Drag-to-reorder with visual drop indicator | [ ] |
+| 7 | Drag-to-reorder with visual drop indicator | [x] |
 | 8 | Undo/redo stack (content + structural, depth 100) | [x] |
 | 9 | Keyboard navigation: arrows, Enter, Escape, Tab | [x] |
 | 10 | Lazy loading: dynamic import() for block renderers | [x] |
@@ -102,13 +105,13 @@
 | 17 | Table block: Handsontable, sort, filter, CSV export | [x] |
 | 18 | Diff block: side-by-side, apply button | [x] |
 | 19 | Task checklist block: toggle, progress bar, strikethrough | [x] |
-| 20 | Media + Gantt blocks | [ ] |
-| 21 | Tab system: color-coded, scrollable, Cmd+W, dirty indicator | [~] |
-| 22 | Breadcrumb path: clickable segments, right-click copy, aliases | [ ] |
-| 23 | File explorer: tree, .gitignore, drag-reorder, Cmd+N | [~] |
-| 24 | Split view: Cmd+\, resizable divider, independent scroll | [ ] |
-| 25 | Workspace banner: upload image or hex color | [ ] |
-| 26 | Settings panel: editor, theme, AI, highlight menu, workspace, shortcuts | [ ] |
+| 20 | Media + Gantt blocks | [x] |
+| 21 | Tab system: color-coded, scrollable, Cmd+W, dirty indicator | [x] |
+| 22 | Breadcrumb path: clickable segments, right-click copy, aliases | [x] |
+| 23 | File explorer: nested tree, expand/collapse, .gitignore, drag-reorder, Cmd+N, context menu | [x] |
+| 24 | Split view: Cmd+\, resizable divider, independent scroll | [x] |
+| 25 | Workspace banner: configurable image/color/text, right-click menu, localStorage | [x] |
+| 26 | Settings panel: editor, theme, AI, highlight menu, workspace, shortcuts | [x] |
 | 27 | Storage adapter: TauriStorage (native FS), BrowserStorage (OPFS), MemoryStorage | [x] |
 | 28 | Development: `npm run dev` opens in browser, hot reload | [x] |
 
@@ -118,13 +121,14 @@
 
 ## Phase 4 — Interpreter Advanced
 > Goal: Canvas, AI, distribution — the full product
+**Features:** F2-Fd (Canvas), F2-Fe (AiIntegration), F2-Ff (Distribution)
 
 | # | Task | Status |
 |---|------|--------|
-| 1 | Drawing canvas: Canvas 2D engine, all shapes, toolbar | [ ] |
-| 2 | Canvas: undo/redo, zoom/pan, snap grid, alignment guides | [ ] |
+| 1 | Drawing canvas: Canvas 2D engine, all shapes, toolbar | [x] |
+| 2 | Canvas: undo/redo, zoom/pan, snap grid, alignment guides | [x] |
 | 3 | Canvas: Apple Pencil pressure → width, tilt → angle (Tauri) | [ ] |
-| 4 | Canvas: export SVG + PNG, Excalidraw-compatible JSON | [ ] |
+| 4 | Canvas: export SVG + PNG, Excalidraw-compatible JSON | [x] |
 | 5 | Flowchart editor: 4 node types, drag-nodes-edges-redraw | [ ] |
 | 6 | Kanban board: auto-gen from [task] sections, drag → update file | [ ] |
 | 7 | Highlight menu: 3 rows (formatting, turn-into, AI) | [ ] |
@@ -151,8 +155,35 @@
 
 ---
 
-## Phase 5 — Ecosystem (V1.5+)
+## Phase 5 — SDKs (Multi-Platform Distribution)
+> Goal: Drop-in EMD editors for React, Rust native, and Apple platforms
+**Features:** F2-ReactSdk, F3-RustSdk, F4-SwiftSdk
+
+| # | Task | Status |
+|---|------|--------|
+| 1 | F2-ReactSdk: Fa-LiveMd — CM6 ViewPlugin + 8 decoration sub-features (Fa1 done) | [~] |
+| 2 | F2-ReactSdk: Fb-Components — <EmdEditor> <EmdViewer> hooks plugin API | [ ] |
+| 3 | F2-ReactSdk: Fc-Playground — Vite dev app + sample files + block tester | [ ] |
+| 4 | F2-ReactSdk: Fd-AiPanel — chat UI + context bridge + streaming + apply | [ ] |
+| 5 | F3-RustSdk: Fa-GpuiEngine — GPU text rendering + 8 decoration sub-features | [ ] |
+| 6 | F3-RustSdk: Fb-Components — EmdEditor entity + EmdViewer + plugin API | [ ] |
+| 7 | F3-RustSdk: Fc-Playground — cargo example binary + sample files | [ ] |
+| 8 | F3-RustSdk: Fd-AiPanel — chat entity + context + streaming + apply | [ ] |
+| 9 | F4-SwiftSdk: Fa-SwiftUIEngine — NSAttributedString engine + 8 sub-features | [ ] |
+| 10 | F4-SwiftSdk: Fb-Components — EmdEditorView + EmdViewerView + plugin API | [ ] |
+| 11 | F4-SwiftSdk: Fc-Playground — Xcode project + sample files | [ ] |
+| 12 | F4-SwiftSdk: Fd-AiPanel — chat view + context + streaming + apply | [ ] |
+| 13 | npm: @everthink/react-emd published | [ ] |
+| 14 | crate: emd-native published on crates.io | [ ] |
+| 15 | SPM: EmdKit published | [ ] |
+
+**Checkpoint:** `npm install @everthink/react-emd` → `<EmdEditor />` works in any React app.
+
+---
+
+## Phase 6 — Ecosystem (V1.5+)
 > Goal: Templates, sharing, history, polish
+**Features:** F10-Ecosystem (planned)
 
 | # | Task | Status |
 |---|------|--------|

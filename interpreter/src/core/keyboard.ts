@@ -102,7 +102,11 @@ export class KeyboardManager {
   };
 
   private shouldIgnoreEvent(event: KeyboardEvent): boolean {
-    const target = event.target as HTMLElement;
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) {
+      return true;
+    }
+
     if (
       target.tagName === 'INPUT' ||
       target.tagName === 'TEXTAREA' ||

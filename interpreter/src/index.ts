@@ -26,6 +26,8 @@ export { EmdImageBlock, IMAGE_BLOCK_TAG } from './blocks/image-block';
 export { EmdTableBlock, TABLE_BLOCK_TAG } from './blocks/table-block';
 export { EmdDiffBlock, DIFF_BLOCK_TAG } from './blocks/diff-block';
 export { EmdTaskBlock, TASK_BLOCK_TAG } from './blocks/task-block';
+export { EmdMediaBlock, MEDIA_BLOCK_TAG } from './blocks/media-block';
+export { EmdSettings, EMD_SETTINGS_TAG } from './components/emd-settings';
 
 export type {
   BlockId,

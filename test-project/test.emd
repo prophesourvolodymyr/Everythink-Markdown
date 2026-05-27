@@ -1,0 +1,58 @@
+## [task|in-progress] Build the login page
+
+→ depends: auth.emd
+→ custom: design.emd#UX-Review
+We need to implement the
+
+[[login-form]]
+ with proper validation.
+
+Requirements:
+- [x] Email field
+- [x] Password field
+- [ ] "Remember me" checkbox
+- [ ] OAuth integration
+
+```mermaid
+graph TD
+    A[User] --> B[Login Form]
+    B --> C[Validate]
+    C --> D[Session]
+```
+
+```draw
+{
+  "version": 1,
+  "width": 800,
+  "height": 500,
+  "commands": [
+    {"type":"rect","x":50,"y":50,"width":200,"height":100,"strokeColor":"#3b82f6","fillColor":"#dbeafe","lineWidth":3}
+  ],
+  "zoom": 1,
+  "panX": 0,
+  "panY": 0,
+  "gridEnabled": false,
+  "gridSize": 20
+}
+```
+
+## [decision|done] Use Rust for the parser
+
+→ supersedes: old-node-parser.emd
+→ implements: perf-spec.emd
+After benchmarking, Rust with logos + pulldown-cmark parsed 500 sections in under 5ms.
+
+## [api] POST /auth/login
+
+```json
+{
+  "email": "string",
+  "password": "string"
+}
+```
+
+Returns a session token.
+
+## [summary] Project Status
+
+The core engine is complete. We are now building the SDKs.
