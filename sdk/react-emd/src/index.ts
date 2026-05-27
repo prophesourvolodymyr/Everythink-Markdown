@@ -7,6 +7,7 @@ import type {
   StatusBadgeConfig,
   TypeBadgeConfig,
   BlockResolverConfig,
+  InlineWidgetsConfig,
   BlockWidget,
   BlockWidgetContext,
   BlockWidgetConstructor,
@@ -19,6 +20,7 @@ import {
   DEFAULT_STATUS_BADGE_CONFIG,
   DEFAULT_TYPE_BADGE_CONFIG,
   DEFAULT_BLOCK_RESOLVER_CONFIG,
+  DEFAULT_INLINE_WIDGETS_CONFIG,
 } from './live-md/types';
 import {
   registerBlockWidget,
@@ -27,6 +29,7 @@ import {
 } from './live-md/block-resolver';
 import { registerBuiltinBlockWidgets } from './live-md/block-widgets';
 import { buildBlockResolverDecorations } from './live-md/block-resolver';
+import { buildInlineWidgetDecorations } from './live-md/inline-widgets';
 
 export { liveMarkdownPlugin };
 export type {
@@ -37,6 +40,7 @@ export type {
   StatusBadgeConfig,
   TypeBadgeConfig,
   BlockResolverConfig,
+  InlineWidgetsConfig,
   BlockWidget,
   BlockWidgetContext,
   BlockWidgetConstructor,
@@ -49,11 +53,13 @@ export {
   DEFAULT_STATUS_BADGE_CONFIG,
   DEFAULT_TYPE_BADGE_CONFIG,
   DEFAULT_BLOCK_RESOLVER_CONFIG,
+  DEFAULT_INLINE_WIDGETS_CONFIG,
   registerBlockWidget,
   unregisterBlockWidget,
   getBlockWidget,
   registerBuiltinBlockWidgets,
   buildBlockResolverDecorations,
+  buildInlineWidgetDecorations,
 };
 
 export { EmdEditor } from './editor';

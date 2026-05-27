@@ -20,6 +20,7 @@ import { buildLinkRendererDecorations } from './link-renderer';
 import { buildStatusBadgeDecorations } from './status-badge';
 import { buildTypeBadgeDecorations } from './type-badge';
 import { buildBlockResolverDecorations, setBlockResolverView } from './block-resolver';
+import { buildInlineWidgetDecorations } from './inline-widgets';
 import type { EmdDocument } from '@everthink/emd';
 
 const BUILDERS: DecorationBuilder[] = [
@@ -35,6 +36,8 @@ const BUILDERS: DecorationBuilder[] = [
     buildTypeBadgeDecorations(tree, _ast, config.typeBadge),
   (tree, _ast, config, state) =>
     buildBlockResolverDecorations(tree, _ast, config.blockResolver, state),
+  (tree, _ast, config, state) =>
+    buildInlineWidgetDecorations(tree, _ast, config.inlineWidgets, state),
 ];
 
 class LiveMdPlugin implements PluginValue {

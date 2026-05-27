@@ -91,6 +91,10 @@ export function setBlockResolverView(view: EditorView | null): void {
   currentView = view;
 }
 
+export function getBlockResolverView(): EditorView | null {
+  return currentView;
+}
+
 function getCodeFenceTag(infoString: string): string {
   const trimmed = infoString.trim();
   const spaceIndex = trimmed.indexOf(' ');

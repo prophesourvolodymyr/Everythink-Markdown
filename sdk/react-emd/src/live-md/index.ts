@@ -29,6 +29,10 @@ export {
   type BlockResolverConfig,
   DEFAULT_BLOCK_RESOLVER_CONFIG,
 } from './types';
+export {
+  type InlineWidgetsConfig,
+  DEFAULT_INLINE_WIDGETS_CONFIG,
+} from './types';
 export type {
   BlockWidget,
   BlockWidgetContext,
@@ -48,4 +52,5 @@ export {
   getBlockWidget,
 } from './block-resolver';
 export { registerBuiltinBlockWidgets } from './block-widgets';
+export { buildInlineWidgetDecorations } from './inline-widgets';
 export { liveMdViewPlugin, LiveMdPlugin } from './view-plugin';

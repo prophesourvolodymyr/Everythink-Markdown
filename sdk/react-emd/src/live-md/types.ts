@@ -163,6 +163,20 @@ export const DEFAULT_BLOCK_RESOLVER_CONFIG: BlockResolverConfig = {
   debounceUpdateMs: 200,
 };
 
+export interface InlineWidgetsConfig {
+  enabled: boolean;
+  renderCheckboxes: boolean;
+  renderProgressBars: boolean;
+  renderApproveButtons: boolean;
+}
+
+export const DEFAULT_INLINE_WIDGETS_CONFIG: InlineWidgetsConfig = {
+  enabled: true,
+  renderCheckboxes: true,
+  renderProgressBars: true,
+  renderApproveButtons: true,
+};
+
 export interface LiveMdConfig {
   syntaxHider: SyntaxHiderConfig;
   textStyler: TextStylerConfig;
@@ -170,6 +184,7 @@ export interface LiveMdConfig {
   statusBadge: StatusBadgeConfig;
   typeBadge: TypeBadgeConfig;
   blockResolver: BlockResolverConfig;
+  inlineWidgets: InlineWidgetsConfig;
   debounceMs: number;
   theme: 'light' | 'dark' | 'high-contrast';
 }
@@ -181,6 +196,7 @@ export const DEFAULT_LIVE_MD_CONFIG: LiveMdConfig = {
   statusBadge: DEFAULT_STATUS_BADGE_CONFIG,
   typeBadge: DEFAULT_TYPE_BADGE_CONFIG,
   blockResolver: DEFAULT_BLOCK_RESOLVER_CONFIG,
+  inlineWidgets: DEFAULT_INLINE_WIDGETS_CONFIG,
   debounceMs: 200,
   theme: 'light',
 };
