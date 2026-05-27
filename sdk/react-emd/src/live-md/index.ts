@@ -54,3 +54,21 @@ export {
 export { registerBuiltinBlockWidgets } from './block-widgets';
 export { buildInlineWidgetDecorations } from './inline-widgets';
 export { liveMdViewPlugin, LiveMdPlugin } from './view-plugin';
+export {
+  type ThemeMode,
+  type ThemeDefinition,
+  type ThemeEngineConfig,
+} from './types';
+export {
+  registerTheme,
+  unregisterTheme,
+  getTheme,
+  listThemes,
+  generateThemeCSS,
+  injectThemeStyles,
+  resolveThemeVariables,
+  buildThemeVariables,
+  LIGHT_THEME,
+  DARK_THEME,
+  HIGH_CONTRAST_THEME,
+} from './theme-engine';

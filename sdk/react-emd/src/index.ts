@@ -8,6 +8,9 @@ import type {
   TypeBadgeConfig,
   BlockResolverConfig,
   InlineWidgetsConfig,
+  ThemeMode,
+  ThemeDefinition,
+  ThemeEngineConfig,
   BlockWidget,
   BlockWidgetContext,
   BlockWidgetConstructor,
@@ -30,6 +33,19 @@ import {
 import { registerBuiltinBlockWidgets } from './live-md/block-widgets';
 import { buildBlockResolverDecorations } from './live-md/block-resolver';
 import { buildInlineWidgetDecorations } from './live-md/inline-widgets';
+import {
+  registerTheme,
+  unregisterTheme,
+  getTheme,
+  listThemes,
+  generateThemeCSS,
+  injectThemeStyles,
+  resolveThemeVariables,
+  buildThemeVariables,
+  LIGHT_THEME,
+  DARK_THEME,
+  HIGH_CONTRAST_THEME,
+} from './live-md/theme-engine';
 
 export { liveMarkdownPlugin };
 export type {
@@ -41,6 +57,9 @@ export type {
   TypeBadgeConfig,
   BlockResolverConfig,
   InlineWidgetsConfig,
+  ThemeMode,
+  ThemeDefinition,
+  ThemeEngineConfig,
   BlockWidget,
   BlockWidgetContext,
   BlockWidgetConstructor,
@@ -60,6 +79,17 @@ export {
   registerBuiltinBlockWidgets,
   buildBlockResolverDecorations,
   buildInlineWidgetDecorations,
+  registerTheme,
+  unregisterTheme,
+  getTheme,
+  listThemes,
+  generateThemeCSS,
+  injectThemeStyles,
+  resolveThemeVariables,
+  buildThemeVariables,
+  LIGHT_THEME,
+  DARK_THEME,
+  HIGH_CONTRAST_THEME,
 };
 
 export { EmdEditor } from './editor';

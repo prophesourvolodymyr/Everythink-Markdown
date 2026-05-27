@@ -177,6 +177,18 @@ export const DEFAULT_INLINE_WIDGETS_CONFIG: InlineWidgetsConfig = {
   renderApproveButtons: true,
 };
 
+export type ThemeMode = 'light' | 'dark' | 'high-contrast';
+
+export interface ThemeDefinition {
+  name: string;
+  variables: Record<string, string>;
+}
+
+export interface ThemeEngineConfig {
+  defaultTheme: ThemeMode;
+  customThemes: Record<string, ThemeDefinition>;
+}
+
 export interface LiveMdConfig {
   syntaxHider: SyntaxHiderConfig;
   textStyler: TextStylerConfig;
@@ -186,7 +198,7 @@ export interface LiveMdConfig {
   blockResolver: BlockResolverConfig;
   inlineWidgets: InlineWidgetsConfig;
   debounceMs: number;
-  theme: 'light' | 'dark' | 'high-contrast';
+  theme: ThemeMode;
 }
 
 export const DEFAULT_LIVE_MD_CONFIG: LiveMdConfig = {
