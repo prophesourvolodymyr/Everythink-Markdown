@@ -70,8 +70,7 @@ class LiveMdPlugin implements PluginValue {
   }
 
   update(update: ViewUpdate): void {
-    const foldChanged =
-      foldedRanges(update.startState) !== foldedRanges(update.state);
+    const foldChanged = this.foldStateChanged(update);
 
     if (!update.docChanged && !foldChanged) return;
 
@@ -83,6 +82,30 @@ class LiveMdPlugin implements PluginValue {
       this.debounceTimer = null;
       this.rebuildDecorations(update.state);
     }, this.config.debounceMs);
+  }
+
+  private foldStateChanged(update: ViewUpdate): boolean {
+    const collectRanges = (state: EditorState): string => {
+      const parts: string[] = [];
+      foldedRanges(state).between(0, state.doc.length, (from, to) => {
+        parts.push(`${from}:${to}`);
+        return false;
+      });
+      return parts.join(',');
+    };
+    return collectRanges(update.startState) !== collectRanges(update.state);
+  }
+
+  rebuild(): void {
+    this.rebuildDecorations(this.view.state);
+  }
+
+  destroy(): void {
+    if (this.debounceTimer) {
+      clearTimeout(this.debounceTimer);
+      this.debounceTimer = null;
+    }
+    setBlockResolverView(null);
   }
 
   rebuildDecorations(state: EditorState): void {

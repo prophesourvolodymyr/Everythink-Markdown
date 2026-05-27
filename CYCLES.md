@@ -157,11 +157,12 @@
 
 ## Phase 5 — SDKs (Multi-Platform Distribution)
 > Goal: Drop-in EMD editors for React, Rust native, and Apple platforms
+> Fa-LiveMd: COMPLETE (see features/F2-ReactSdk/Fa-LiveMd/)
 **Features:** F2-ReactSdk, F3-RustSdk, F4-SwiftSdk
 
 | # | Task | Status |
 |---|------|--------|
-| 1 | F2-ReactSdk: Fa-LiveMd — CM6 ViewPlugin + 8 decoration sub-features (Fa1 done) | [~] |
+| 1 | F2-ReactSdk: Fa-LiveMd — CM6 ViewPlugin + 10 decoration sub-features + integration | [x] |
 | 2 | F2-ReactSdk: Fb-Components — <EmdEditor> <EmdViewer> hooks plugin API | [ ] |
 | 3 | F2-ReactSdk: Fc-Playground — Vite dev app + sample files + block tester | [ ] |
 | 4 | F2-ReactSdk: Fd-AiPanel — chat UI + context bridge + streaming + apply | [ ] |
